@@ -1,14 +1,11 @@
 importScripts("sqlite3.js");
-console.log("hello sql world!")
 let db = null;
 
 async function createDatabase() {
-    console.log("attempting to create sqlite3 db")
     const sqlite3 = await sqlite3InitModule();
 
     // TODO: Parameterize storage location, and storage type
     db = new sqlite3.oo1.DB("file:database.db?vfs=opfs", "c");
-    console.log("database created successfully.");
 }
 
 function handleMessage() {
