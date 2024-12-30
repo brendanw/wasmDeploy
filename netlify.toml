@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/mapbox/*"
+  to = "/.netlify/functions/mapbox-proxy"
+  status = 200
