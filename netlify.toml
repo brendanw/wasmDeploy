@@ -1,4 +1,6 @@
+# netlify.toml
 [[redirects]]
   from = "/mapbox/*"
-  to = "/.netlify/functions/mapbox-proxy"
+  to = "https://api.mapbox.com/:splat"
   status = 200
+  force = true
