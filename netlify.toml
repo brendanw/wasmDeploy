@@ -1,0 +1,10 @@
+# netlify.toml
+[[redirects]]
+  from = "/mapbox/*"
+  to = "https://api.mapbox.com/:splat"
+  status = 200
+  force = true
+[[headers]]
+  for = "**/*.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"
