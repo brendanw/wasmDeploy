@@ -11,6 +11,44 @@
        window.amplitude.init('5a07729fcb94ca3ece9387afb6f53d03', {
           "fetchRemoteConfig":true, "autocapture":true
        });
+
+       window.createLayer = function (layerObj) {
+          if (!window.myMap.getSource(layerObj.sourceId)) {
+             window.myMap.addSource(layerObj.sourceId, {
+                'type': 'geojson',
+                'data': layerObj.geojson
+             });
+          }
+
+          if (!window.myMap.getLayer(layerObj.lineLayerId)) {
+             window.myMap.addLayer({
+                'id': layerObj.lineLayerId,
+                'type': 'line',
+                'source': layerObj.sourceId,
+                'layout': {
+                   'line-join': 'round',
+                   'line-cap': 'round'
+                },
+                'paint': {
+                   'line-color': layerObj.color,
+                   'line-width': 8
+                }
+             });
+          }
+
+          if (!window.myMap.getLayer(layerObj.circleLayerId)) {
+             window.myMap.addLayer({
+                id: layerObj.circleLayerId,
+                type: 'circle',
+                source: layerObj.sourceId,
+                paint: {
+                   'circle-radius': 8,
+                   'circle-color': layerObj.color
+                },
+                filter: ['==', '$type', 'Point']
+             });
+          }
+       };
     </script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
