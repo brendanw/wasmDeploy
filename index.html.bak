@@ -13,7 +13,6 @@
        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
        Bugsnag.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
        //BugsnagPerformance.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
-       Bugsnag.notify(new Error('Test error'))
     </script>
 
     <script src="./amplitude.js"></script>
