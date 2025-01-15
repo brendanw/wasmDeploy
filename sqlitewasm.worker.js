@@ -9,10 +9,6 @@ async function createDatabase() {
    // TODO: Parameterize storage location, and storage type
    db = new sqlite3.oo1.DB("file:database.db?vfs=opfs", "c");
    console.log("database created successfully.");
-
-   // Uncomment out the below to delete the db
-   /*await deleteDatabase();
-   console.log("database deleted");*/
 }
 
 function handleMessage() {
