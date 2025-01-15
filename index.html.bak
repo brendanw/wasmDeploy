@@ -6,11 +6,13 @@
     <title>BaseBeta</title>
     <link type="text/css" rel="stylesheet" href="styles.css">
 
-    <script src="//d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js"></script>
+    <!--<script src="//d2wy8f7a9ursnm.cloudfront.net/v8/bugsnag.min.js"></script>-->
+
+    <script src="./bugsnag.js"></script>
     <script type="module">
        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
        Bugsnag.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
-       BugsnagPerformance.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
+       //BugsnagPerformance.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
        Bugsnag.notify(new Error('Test error'))
     </script>
 
