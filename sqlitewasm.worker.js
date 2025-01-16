@@ -1,14 +1,13 @@
 importScripts("sqlite3.js");
-console.log("local sqlitewasm worker!");
 let db = null;
 
+//TODO: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
+// use a SharedWorker so we can have concurrent db access from multiple tabs
 async function createDatabase() {
-   console.log("attempting to create sqlite3 db")
    const sqlite3 = await sqlite3InitModule();
 
    // TODO: Parameterize storage location, and storage type
    db = new sqlite3.oo1.DB("file:database.db?vfs=opfs", "c");
-   console.log("database created successfully.");
 }
 
 function handleMessage() {
@@ -62,19 +61,15 @@ async function deleteDatabase() {
       }
       // Check if the database is stored in OPFS
       const fs = await navigator.storage.getDirectory();
-      const dbFile = await fs.getFileHandle("database.db", {create: false});
 
       // Delete the file
       await fs.removeEntry("database.db");
-      console.log("Database deleted successfully.");
-
    } catch (err) {
       console.error("Error deleting the database:", err);
    }
 }
 
 if (typeof importScripts === "function") {
-   console.log('this sqlitewasm.worker..js script is being imported');
    db = null;
    const sqlModuleReady = createDatabase();
    self.onmessage = (event) => {
