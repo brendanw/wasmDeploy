@@ -64,7 +64,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.6f7ae5631204a66e0247c8c71127ef46.js"></script>
+    <script type="application/javascript" src="composeApp.73d3dfdc825ee45d61d6b17de98357af.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
@@ -102,6 +102,47 @@
 <div>
     <div style="width: 100%; height: 100%; background: transparent; position: absolute;" id="canvasHolder"></div>
     <div id="components" style="z-index: 1000"></div>
+    <div id="warning" style="z-index: 1001; position: absolute; width: 100%; height: 100%; display: none;">
+        <h2>BaseBeta can't run on your browser as it does not support WASM GC ⚠️</h2>
+        Please make sure that your runtime environment supports the latest version of Wasm GC and
+        Exception-Handling proposals.
+        For more information, see <a href="https://kotl.in/wasm-help">https://kotl.in/wasm-help</a>.
+        <br/>
+        <br/>
+        <ul>
+            <li>For <b>Chrome</b> and <b>Chromium-based</b> browsers (Edge, Brave etc.), it <b>should
+                just work</b> since version 119.
+            </li>
+            <li>For <b>Firefox</b> 120 it <b>should just work</b>.</li>
+            <li>For <b>Firefox</b> 119:
+                <ol>
+                    <li>Open <span class="code">about:config</span> in the browser.</li>
+                    <li>Enable <strong>javascript.options.wasm_gc</strong>.</li>
+                    <li>Refresh this page.</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
 </div>
+
+<script type="application/javascript">
+   const unhandledError = (event, error) => {
+      if (error instanceof WebAssembly.CompileError) {
+         window.location.replace("https://old.basebeta.com")
+
+         document.getElementById("warning").style.display="initial";
+         document.getElementById("canvasHolder").style.display="none";
+         document.getElementById("components").style.display="none";
+         document.getElementsByClassName("homepage_landing")[0].style.display="none";
+
+         // Hide a Scary Webpack Overlay which is less informative in this case.
+         const webpackOverlay = document.getElementById("webpack-dev-server-client-overlay");
+         if (webpackOverlay != null) webpackOverlay.style.display="none";
+      }
+   }
+
+   addEventListener("error", (event) => unhandledError(event, event.error));
+   addEventListener("unhandledrejection", (event) => unhandledError(event, event.reason));
+</script>
 </body>
 </html>
