@@ -151,6 +151,9 @@ string|setting_app_color_scheme|VGhlbWU=
 string|setting_language|TGFuZ3VhZ2U=
 string|setting_name|TmFtZQ==
 string|setting_offline_packs|T2ZmbGluZSBwYWNrcw==
+string|setting_subscription_autorenews|U3Vic2NyaXB0aW9uIGF1dG8tcmVuZXdzIG9uIA==
+string|setting_subscription_cancelled_toast|U3Vic2NyaXB0aW9uIGNhbmNlbGxlZA==
+string|setting_subscription_cancel|Q2FuY2VsIHN1YnNjcmlwdGlvbg==
 string|setting_subscription_expires|U3Vic2NyaXB0aW9uIGV4cGlyZXMgb24g
 string|setting_subscription|U3Vic2NyaXB0aW9u
 string|setting_username|VXNlcm5hbWUgKGVtYWlsKQ==
