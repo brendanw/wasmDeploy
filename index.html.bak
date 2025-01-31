@@ -22,6 +22,42 @@
           "fetchRemoteConfig":true, "autocapture":true
        });
 
+       let isKeyPressed = false;
+
+       // Listen for keydown events to track if a key is being held
+       document.addEventListener('keydown', () => {
+          isKeyPressed = true;
+       });
+
+       // Listen for keyup events to reset the flag when no key is held
+       document.addEventListener('keyup', () => {
+          isKeyPressed = false;
+       });
+
+       window.addLongPressGesture = function() {
+          window.myMap.on('mousedown', (e) => {
+             if (isKeyPressed) return;
+
+             let isLongPress = false;
+
+             // Set a timeout to detect long press
+             const longPressTimeout = setTimeout(() => {
+                isLongPress = true;
+                const { lng, lat } = e.lngLat;
+                const coordinates = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+
+                // Copy to clipboard
+                navigator.clipboard.writeText(coordinates)
+                   .then(() => alert(`Copied to clipboard: ${coordinates}`))
+                   .catch(err => console.error('Failed to copy:', err));
+             }, 500); // Adjust the duration as needed
+
+             window.myMap.once('mouseup', () => {
+                clearTimeout(longPressTimeout); // Cancel long press detection if released early
+             });
+          });
+       }
+
        window.createLayer = function (layerObj) {
           if (!window.myMap.getSource(layerObj.sourceId)) {
              window.myMap.addSource(layerObj.sourceId, {
