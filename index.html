@@ -36,13 +36,10 @@
 
        window.addLongPressGesture = function() {
           window.myMap.on('mousedown', (e) => {
-             if (isKeyPressed) return;
+             if (e.originalEvent.button === 2) {
+                e.originalEvent.preventDefault();
+                console.log('Right-click detected via mousedown event');
 
-             let isLongPress = false;
-
-             // Set a timeout to detect long press
-             const longPressTimeout = setTimeout(() => {
-                isLongPress = true;
                 const { lng, lat } = e.lngLat;
                 const coordinates = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
 
@@ -50,11 +47,7 @@
                 navigator.clipboard.writeText(coordinates)
                    .then(() => alert(`Copied to clipboard: ${coordinates}`))
                    .catch(err => console.error('Failed to copy:', err));
-             }, 500); // Adjust the duration as needed
-
-             window.myMap.once('mouseup', () => {
-                clearTimeout(longPressTimeout); // Cancel long press detection if released early
-             });
+             }
           });
        }
 
@@ -100,7 +93,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.26e603822f8adcc482e0342e2cfc4ae4.js"></script>
+    <script type="application/javascript" src="composeApp.78f7b63bbe875f8db86122bc2907de08.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
