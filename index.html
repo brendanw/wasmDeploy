@@ -11,7 +11,8 @@
     <script src="./bugsnag.js"></script>
     <script type="module">
        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
-       Bugsnag.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
+
+       Bugsnag.start({apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4'})
        window.myBugsnag = Bugsnag;
        //BugsnagPerformance.start({ apiKey: 'fe9ccf540c1dd42b4a1b5d9d820905c4' })
     </script>
@@ -19,7 +20,7 @@
     <script src="./amplitude.js"></script>
     <script>
        window.amplitude.init('5a07729fcb94ca3ece9387afb6f53d03', {
-          "fetchRemoteConfig":true, "autocapture":true
+          "fetchRemoteConfig": true, "autocapture": true
        });
 
        let isKeyPressed = false;
@@ -34,13 +35,13 @@
           isKeyPressed = false;
        });
 
-       window.addLongPressGesture = function() {
+       window.addLongPressGesture = function () {
           window.myMap.on('mousedown', (e) => {
              if (e.originalEvent.button === 2) {
                 e.originalEvent.preventDefault();
                 console.log('Right-click detected via mousedown event');
 
-                const { lng, lat } = e.lngLat;
+                const {lng, lat} = e.lngLat;
                 const coordinates = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
 
                 // Copy to clipboard
@@ -93,7 +94,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.febda5bc5ff5614e0e366369a0251431.js"></script>
+    <script type="application/javascript" src="composeApp.a2c86178e6145f12517f5528ee7708b2.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
@@ -156,18 +157,16 @@
 
 <script type="application/javascript">
    const unhandledError = (event, error) => {
-      if (error instanceof WebAssembly.CompileError) {
-         window.location.replace("https://old.basebeta.com")
+      window.location.replace("https://old.basebeta.com")
 
-         document.getElementById("warning").style.display="initial";
-         document.getElementById("canvasHolder").style.display="none";
-         document.getElementById("components").style.display="none";
-         document.getElementsByClassName("homepage_landing")[0].style.display="none";
+      document.getElementById("warning").style.display = "initial";
+      document.getElementById("canvasHolder").style.display = "none";
+      document.getElementById("components").style.display = "none";
+      document.getElementsByClassName("homepage_landing")[0].style.display = "none";
 
-         // Hide a Scary Webpack Overlay which is less informative in this case.
-         const webpackOverlay = document.getElementById("webpack-dev-server-client-overlay");
-         if (webpackOverlay != null) webpackOverlay.style.display="none";
-      }
+      // Hide a Scary Webpack Overlay which is less informative in this case.
+      const webpackOverlay = document.getElementById("webpack-dev-server-client-overlay");
+      if (webpackOverlay != null) webpackOverlay.style.display = "none";
    }
 
    addEventListener("error", (event) => unhandledError(event, event.error));
