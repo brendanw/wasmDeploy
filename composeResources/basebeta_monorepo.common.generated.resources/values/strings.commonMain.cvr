@@ -161,9 +161,12 @@ string|savelog_save|U2F2ZQ==
 string|savelog_time_dialog_title|UGljayB0aW1l
 string|savelog_time|VGltZTog
 string|savelog_title|VXBkYXRl
+string|search_city|Q2l0eQ==
+string|search_country|Q291bnRyeQ==
 string|search_fakebox_placeholder|U2VhcmNo
 string|search_input_placeholder|U2VhcmNoIGp1bXBz
 string|search_recent_subtitle|UmVjZW50IFNlYXJjaGVz
+string|search_region|UmVnaW9u
 string|select_action|U2VsZWN0IGFjdGlvbg==
 string|select_camera|Q2FwdHVyZSBwaG90byBmcm9tIGNhbWVyYQ==
 string|select_gallery|U2VsZWN0IHBob3RvIGZyb20gZ2FsbGVyeQ==
