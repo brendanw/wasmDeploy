@@ -37,6 +37,7 @@ string|approach_elev_max|RWxldmF0aW9uIG1heA==
 string|approach_elev_min|RWxldmF0aW9uIG1pbg==
 string|approach_end_time|RW5kIHRpbWU=
 string|approach_flat_length|RmxhdCBsZW5ndGg=
+string|approach_importing|SW1wb3J0aW5nIGFwcHJvYWNoLi4u
 string|approach_item_name|TmFtZXM=
 string|approach_item_notes|Tm90ZXM=
 string|approach_item_visibility|U2hvdyBvbiBtYWluIG1hcD8=
@@ -68,6 +69,7 @@ string|email_field|RW1haWw=
 string|email_next|TkVYVA==
 string|email_title|QW5kIHlvdXIgZW1haWw/
 string|exit_direction|RXhpdCBkaXJlY3Rpb24=
+string|exit_geopoint_copied|R2VvcG9pbnQgY29waWVk
 string|exit_menu_open_gpx|T3BlbiAuR1BY
 string|exit_menu_open_kml|T3BlbiAuS01M
 string|exit_menu_update_exit|VXBkYXRlIGV4aXQ=
@@ -212,6 +214,7 @@ string|toggle_all|dG9nZ2xlIGFsbA==
 string|track_attr_computed_offset|Q29tcHV0ZWQgb2Zmc2V0
 string|track_attr_date|RGF0ZQ==
 string|track_attr_distance_traversed|RGlzdGFuY2UgdHJhdmVyc2Vk
+string|track_attr_exit_coordinate|RXhpdCBjb29yZGluYXRl
 string|track_attr_flare|RmxhcmUgaGVpZ2h0
 string|track_attr_fortyfive|NDXCsCBjcm9zc292ZXI=
 string|track_attr_glide_heuristic|R2xpZGUgaGV1cmlzdGlj
@@ -235,7 +238,11 @@ string|tracklist_compute_xoffset|Q29tcHV0ZSB4LW9mZnNldA==
 string|tracklist_compute_yoffset|Q29tcHV0ZSB5LW9mZnNldA==
 string|tracklist_compute|Q29tcHV0ZQ==
 string|tracklist_emptystate_text|UGx1ZyB5b3VyIGZseXNpZ2h0IGludG8geW91ciBwaG9uZSBhbmQgdGFwIHRoZSAnKycgaWNvbiBpbiB0aGUgdXBwZXIgcmlnaHQgaGFuZCBjb3JuZXIgdG8gaW1wb3J0IGdwcyB0cmFja3MuIE9yIHVwbG9hZCB0cmFja3MgdG8gYmFzZWJldGEuY29tIGFuZCB0aGV5IHdpbGwgc2hvdyB1cCBoZXJlLg==
+string|tracklist_importing_progress|SW1wb3J0aW5nIGZseXNpZ2h0IHRyYWNrLi4u
 string|tracklist_mode|TW9kZQ==
+string|tracklist_no_flight_found_error|Tm8gQkFTRSBqdW1wL2ZsaWdodCB3YXMgcmVjb2duaXplZCBpbiB0aGUgZmlsZQ==
+string|tracklist_pick_flysight_track|UGljayBmbHlzaWdodCB0cmFjaw==
+string|tracklist_valid_number_error|UGxlYXNlIGVudGVyIGEgdmFsaWQgbnVtYmVy
 string|tracksuit|VHJhY2tzdWl0
 string|tripreports_delete_dialog_title|RGVsZXRlIHRyaXAgcmVwb3J0Pw==
 string|tripreports_emptystate_text|QmUgdGhlIGZpcnN0IHRvIHdyaXRlIGEgdHJpcCByZXBvcnQgZm9yIHRoaXMgZXhpdCBieSBjbGlja2luZyB0aGUgJysnIGljb24gaW4gdGhlIHVwcGVyIHJpZ2h0IGhhbmQgY29ybmVy
