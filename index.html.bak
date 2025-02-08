@@ -131,7 +131,9 @@
 
 <div>
     <div style="width: 100%; height: 100%; background: transparent; position: absolute;" id="canvasHolder"></div>
-    <div id="components" style="z-index: 1000"></div>
+    <div id="components" style="z-index: 1000">
+
+    </div>
     <div id="warning" style="z-index: 1001; position: absolute; width: 100%; height: 100%; display: none;">
         <h2>BaseBeta can't run on your browser as it does not support WASM GC ⚠️</h2>
         Please make sure that your runtime environment supports the latest version of Wasm GC and
@@ -158,6 +160,7 @@
 <script type="application/javascript">
    const unhandledError = (event, error) => {
       window.location.replace("https://old.basebeta.com")
+      console.error(error);
 
       document.getElementById("warning").style.display = "initial";
       document.getElementById("canvasHolder").style.display = "none";
