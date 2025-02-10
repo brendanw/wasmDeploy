@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BaseBeta</title>
+    <link rel="shortcut icon" href="https://basebeta-east.s3.amazonaws.com/site-images/favicon.ico"
+          type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="styles.css">
 
     <!--<script src="//d2wy8f7a9ursnm.cloudfront.net/v8/bugsnag.min.js"></script>-->
