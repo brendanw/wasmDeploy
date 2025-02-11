@@ -10,6 +10,36 @@
 
     <!--<script src="//d2wy8f7a9ursnm.cloudfront.net/v8/bugsnag.min.js"></script>-->
 
+    <script>
+       const bc = new BroadcastChannel("my_app_channel");
+       let isMaster = false;
+       const myTabId = crypto.randomUUID();
+
+       // Listen for messages
+       bc.onmessage = (event) => {
+          const { type, tabId } = event.data;
+
+          if (type === "HELLO") {
+             // Another tab is greeting. If we're master, tell it "a tab is active"
+             if (isMaster) {
+                bc.postMessage({ type: "TAB_ACTIVE", tabId: tabId });
+             }
+          }
+          else if (type === "TAB_ACTIVE" && tabId === myTabId) {
+             alert("BaseBeta is currently only designed to function in one tab per browser instance at the moment. Please close this tab or your original BaseBeta tab to ensure proper functioning of the database.");
+          }
+       };
+
+       // On load, send a "HELLO"
+       bc.postMessage({ type: "HELLO", tabId: myTabId });
+
+       // Wait a short time to see if we get a "TAB_ACTIVE" back
+       // If none, this tab is the master
+       setTimeout(() => {
+          isMaster = true;
+       }, 300);
+    </script>
+
     <script src="./bugsnag.js"></script>
     <script type="module">
        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
@@ -96,7 +126,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.51969f1d10355eecf941769af30b9a4a.js"></script>
+    <script type="application/javascript" src="composeApp.4c947900f726251d50a996de764a3c4e.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
