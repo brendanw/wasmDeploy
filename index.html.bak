@@ -26,7 +26,7 @@
              }
           }
           else if (type === "TAB_ACTIVE" && tabId === myTabId) {
-             alert("BaseBeta is currently only designed to function in one tab per browser instance at the moment. Please close this tab or your original BaseBeta tab to ensure proper functioning of the database.");
+             alert("BaseBeta is currently only designed to function in one tab per browser instance. Please close this tab or your original BaseBeta tab to ensure proper functioning of the database.");
           }
        };
 
