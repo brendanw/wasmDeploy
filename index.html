@@ -17,21 +17,20 @@
 
        // Listen for messages
        bc.onmessage = (event) => {
-          const { type, tabId } = event.data;
+          const {type, tabId} = event.data;
 
           if (type === "HELLO") {
              // Another tab is greeting. If we're master, tell it "a tab is active"
              if (isMaster) {
-                bc.postMessage({ type: "TAB_ACTIVE", tabId: tabId });
+                bc.postMessage({type: "TAB_ACTIVE", tabId: tabId});
              }
-          }
-          else if (type === "TAB_ACTIVE" && tabId === myTabId) {
+          } else if (type === "TAB_ACTIVE" && tabId === myTabId) {
              alert("BaseBeta is currently only designed to function in one tab per browser instance. Please close this tab or your original BaseBeta tab to ensure proper functioning of the database.");
           }
        };
 
        // On load, send a "HELLO"
-       bc.postMessage({ type: "HELLO", tabId: myTabId });
+       bc.postMessage({type: "HELLO", tabId: myTabId});
 
        // Wait a short time to see if we get a "TAB_ACTIVE" back
        // If none, this tab is the master
@@ -50,6 +49,7 @@
     </script>
 
     <script src="./amplitude.js"></script>
+
     <script>
        window.amplitude.init('5a07729fcb94ca3ece9387afb6f53d03', {
           "fetchRemoteConfig": true, "autocapture": true
@@ -121,12 +121,100 @@
              });
           }
        };
+
+       window.initiateFileListener = function (token, locationId, mediaId) {
+          window.activeMediaId = "";
+          window.fileUploadProgress = 0.0;
+
+          document.getElementById('file-button').addEventListener('click', () => {
+             document.getElementById('file-input').click();
+          });
+
+          document.getElementById('file-input').onchange = async function (e) {
+             console.log('detected file change');
+             let files = this.files;
+             let file = files[0];
+             if (file.type !== "video/mp4" && file.type !== "video/quicktime") {
+                console.log(file.type);
+                return alert("Only mp4 and mov video files are accepted");
+             }
+
+             await upload_video(file, token, locationId, mediaId);
+          };
+       };
+
+       window.upload_video = function (file, token, locationId, mediaId) {
+          window.hasUploadsInProgress = true;
+
+          let key = `videos/${file.name}`;
+          window.mediaKey = key;
+          let formData = new FormData();
+          formData.append("file", file);
+          console.log("upload_video was called");
+
+          //let videoId = exports.generateMongoObjectId();
+          //exports.addInProgressVideo(videoId);
+          window.activeMediaId = mediaId;
+          console.log(`activeMediaId js: ${window.activeMediaId}`)
+
+          try {
+             let request = new XMLHttpRequest();
+             request.onreadystatechange = async (e) => {
+                if (request.readyState === 4) {
+                   window.hasUploadsInProgress = false;
+                   if (request.status === 200) {
+                      await createJobs(key, token, locationId);
+                   } else {
+                      alert("error uploading video");
+                   }
+                }
+             };
+
+             request.upload.addEventListener('progress', (e) => {
+                let percent = parseInt(100 - (e.loaded / e.total * 100));
+                let mbUploaded = e.loaded / 1000000;
+                console.log(`${mbUploaded} mb uploaded`);
+                console.log(`${percent}% left`);
+                window.fileUploadProgress = 100 - percent;
+             });
+
+             request.open("POST", `https://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
+             console.log(`Auth header: 'Bearer ${token}'`)
+             request.setRequestHeader("Authorization", `Bearer ${token}`);
+             request.send(formData);
+             console.log("formData sent")
+          } catch (err) {
+             console.error(err);
+             window.hasUploadsInProgress = false;
+             alert("Could not get signed URL.");
+          }
+       };
+
+       window.createJobs = async function (key, token, locationId) {
+          try {
+             let resultJson = await fetch(`https://api.basebeta.com/create_jobs?key=${key}&associatedLocation=${locationId}`, {
+                method: 'POST',
+                headers: {
+                   'Authorization': `Bearer ${token}`,
+                },
+             });
+
+             let result = await resultJson.json();
+             alert("jobs created -- video added to exit");
+             window.hasUploadsInProgress = false;
+             console.log(`mediaId: ${result.mediaId}`);
+          } catch (err) {
+             window.hasUploadsInProgress = false;
+             console.error(err);
+             alert("error creating jobs");
+          }
+       };
     </script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.779558b8354bb560a9f406973bdec36d.js"></script>
+    <script type="application/javascript" src="composeApp.1daa0e041291715912b6f714a5a201aa.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
@@ -191,7 +279,7 @@
 
 <script type="application/javascript">
    const unhandledError = (event, error) => {
-      window.location.replace("https://old.basebeta.com")
+      // window.location.replace("https://old.basebeta.com")
       console.error(error);
 
       document.getElementById("warning").style.display = "initial";
