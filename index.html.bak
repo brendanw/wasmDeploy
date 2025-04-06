@@ -171,11 +171,12 @@
              };
 
              request.upload.addEventListener('progress', (e) => {
-                let percent = parseInt(100 - (e.loaded / e.total * 100));
+                let percentLeft = parseInt(100 - (e.loaded / e.total * 100));
+                let percent = (e.loaded / e.total * 100);
                 let mbUploaded = e.loaded / 1000000;
                 console.log(`${mbUploaded} mb uploaded`);
-                console.log(`${percent}% left`);
-                window.fileUploadProgress = 100 - percent;
+                console.log(`${percentLeft}% left`);
+                window.fileUploadProgress = percent;
              });
 
              request.open("POST", `https://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);

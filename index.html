@@ -171,11 +171,12 @@
              };
 
              request.upload.addEventListener('progress', (e) => {
-                let percent = parseInt(100 - (e.loaded / e.total * 100));
+                let percentLeft = parseInt(100 - (e.loaded / e.total * 100));
+                let percent = (e.loaded / e.total * 100);
                 let mbUploaded = e.loaded / 1000000;
                 console.log(`${mbUploaded} mb uploaded`);
-                console.log(`${percent}% left`);
-                window.fileUploadProgress = 100 - percent;
+                console.log(`${percentLeft}% left`);
+                window.fileUploadProgress = percent;
              });
 
              request.open("POST", `https://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
@@ -214,7 +215,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.9a78d0a1ac4fd68b7aed51cd17414084.js"></script>
+    <script type="application/javascript" src="composeApp.c102c3c1bf9e12796886b4931c840a34.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
