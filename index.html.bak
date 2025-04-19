@@ -163,7 +163,7 @@
                 if (request.readyState === 4) {
                    window.hasUploadsInProgress = false;
                    if (request.status === 200) {
-                      await createJobs(key, token, locationId);
+                      await createJobs(key, token, locationId, mediaId);
                    } else {
                       alert("error uploading video");
                    }
@@ -191,9 +191,9 @@
           }
        };
 
-       window.createJobs = async function (key, token, locationId) {
+       window.createJobs = async function (key, token, locationId, mediaId) {
           try {
-             let resultJson = await fetch(`https://api.basebeta.com/create_jobs?key=${key}&associatedLocation=${locationId}`, {
+             let resultJson = await fetch(`http://localhost:5002/create_jobs?key=${key}&associatedLocation=${locationId}&mediaId=${mediaId}`, {
                 method: 'POST',
                 headers: {
                    'Authorization': `Bearer ${token}`,
