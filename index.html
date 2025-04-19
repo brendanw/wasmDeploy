@@ -193,7 +193,7 @@
 
        window.createJobs = async function (key, token, locationId, mediaId) {
           try {
-             let resultJson = await fetch(`http://localhost:5002/create_jobs?key=${key}&associatedLocation=${locationId}&mediaId=${mediaId}`, {
+             let resultJson = await fetch(`https://api.basebeta.com/create_jobs?key=${key}&associatedLocation=${locationId}&mediaId=${mediaId}`, {
                 method: 'POST',
                 headers: {
                    'Authorization': `Bearer ${token}`,
@@ -215,7 +215,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.2cb45442b3c731897bfff766f8ae2333.js"></script>
+    <script type="application/javascript" src="composeApp.a13393cf6df8dd3d1838f07eed86e505.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
     <style>
