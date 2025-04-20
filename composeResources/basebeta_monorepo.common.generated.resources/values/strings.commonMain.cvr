@@ -84,6 +84,7 @@ string|forgot_password_next|TkVYVA==
 string|forgot_password_title|Rm9yZ290IHBhc3N3b3JkPw==
 string|global_app_store|QXBwIFN0b3Jl
 string|global_cancel|Q2FuY2Vs
+string|global_date|RGF0ZQ==
 string|global_feet_abbreviation|ZnQ=
 string|global_meters_abbreviation|bQ==
 string|global_ok|T0s=
@@ -301,6 +302,9 @@ string|viewlog_flight_type|RmxpZ2h0IHR5cGU=
 string|viewlog_menu_delete|RGVsZXRl
 string|viewlog_open_track|T3BlbiB0cmFjaw==
 string|viewlog_title|TG9nYm9vaw==
+string|viewprofile_coordinate_copied|Q29vcmRpbmF0ZXMgY29waWVkIHRvIGNsaXBib2FyZA==
+string|viewprofile_data_section|RGF0YQ==
+string|viewprofile_profile_copied|UHJvZmlsZSBjb3BpZWQgdG8gY2xpcGJvYXJk
 string|welcome_create_account|Q3JlYXRlIGFjY291bnQ=
 string|welcome_sign_in|U2lnbiBpbg==
 string|welcome_to_basebeta|V2VsY29tZSB0byBCYXNlQmV0YQ==
