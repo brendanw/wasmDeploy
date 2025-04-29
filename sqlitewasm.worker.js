@@ -59,6 +59,7 @@ async function deleteDatabase() {
          db.close(); // Close the database connection
          db = null;
       }
+
       // Check if the database is stored in OPFS
       const fs = await navigator.storage.getDirectory();
 
