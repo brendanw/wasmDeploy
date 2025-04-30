@@ -81,6 +81,8 @@ string|distance_to_talus|RGlzdGFuY2UgdG8gVGFsdXM=
 string|email_field|RW1haWw=
 string|email_next|TkVYVA==
 string|email_title|QW5kIHlvdXIgZW1haWw/
+string|exit_admin_delete_media_dialog_message|QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZSB0aGlzIGltYWdlPw==
+string|exit_admin_delete_media_dialog_title|RGVsZXRlIGltYWdlPw==
 string|exit_admin_home_delete|RGVsZXRlIGV4aXQ=
 string|exit_admin_home_exit_direction|RXhpdCBkaXJlY3Rpb24=
 string|exit_admin_home_flyable_altitude|Rmx5YWJsZSBhbHRpdHVkZQ==
@@ -102,6 +104,7 @@ string|exit_admin_home_title|RXhpdCBBZG1pbg==
 string|exit_admin_home_update_add_videos|VXBkYXRlL0FkZCBWaWRlb3M=
 string|exit_admin_home_update_approach_rating|VXBkYXRlIGFwcHJvYWNoIHJhdGluZw==
 string|exit_admin_home_update_exit_coordinate|VXBkYXRlIGV4aXQgY29vcmRpbmF0ZQ==
+string|exit_admin_home_update_guide_media|VXBkYXRlL0FkZCBJbWFnZXM=
 string|exit_admin_home_update_laser_profile|VXBkYXRlIGxhc2VyIHByb2ZpbGU=
 string|exit_admin_home_update_wingsuit_rating|VXBkYXRlIHdpbmdzdWl0IHJhdGluZw==
 string|exit_admin_home_verticality|VmVydGljYWxpdHk=
@@ -116,6 +119,7 @@ string|flyable_altitude|Rmx5YWJsZSBBbHRpdHVkZQ==
 string|forgot_password_email|RW1haWw=
 string|forgot_password_next|TkVYVA==
 string|forgot_password_title|Rm9yZ290IHBhc3N3b3JkPw==
+string|global_admin|QWRtaW4=
 string|global_app_store|QXBwIFN0b3Jl
 string|global_cancel|Q2FuY2Vs
 string|global_date|RGF0ZQ==
