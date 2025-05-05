@@ -48,10 +48,9 @@ function handleMessage() {
 
 function handleError(err) {
    // TODO: record bugsnag error here
-
    if (err.message?.includes("no such column") === true) {
       deleteDatabase();
-      window.location.replace("https://www.basebeta.com");
+      self.postMessage({ type: 'RELOAD_PAGE'});
       return;
    }
 
