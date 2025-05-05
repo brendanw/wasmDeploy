@@ -189,7 +189,30 @@
                          shapeSvg += `<rect x="${i*(size+spacing)}" y="0" width="${size}" height="${size}" fill="${color}" />`;
                          break;
                       case "diamond":
-                         shapeSvg += `<rect x="${i*(size+spacing)}" y="0" width="${size}" height="${size}" fill="${color}" transform="translate(${size/2 + i*(size+spacing)}, ${size/2}) rotate(45) translate(-${size/2}, -${size/2})" />`;
+                         const xPos = i*(size+spacing); // Use original spacing
+
+                         // The original path: "M480-80 240-480 480-880 720-480Z"
+                         // We need to scale and translate it to fit our small icon size
+
+                         // Scale factors (from original 960×960 viewBox to our small size)
+                         const scaleX = size / 480; // 480 is half the original width
+                         const scaleY = size / 480; // 480 is half the original height
+
+                         // Calculate scaled path coordinates
+                         // Original center point is at x=480, y=-480
+                         // We need to center at x=size/2, y=size/2
+
+                         const x1 = size/2;                     // center point (was 480)
+                         const y1 = size;                       // bottom point (was -80)
+                         const x2 = 0;                          // left point (was 240)
+                         const y2 = size/2;                     // center y (was -480)
+                         const x3 = size/2;                     // center point (was 480)
+                         const y3 = 0;                          // top point (was -880)
+                         const x4 = size;                       // right point (was 720)
+                         const y4 = size/2;                     // center y (was -480)
+
+                         // Create a path with the exact proportion from the SVG
+                         shapeSvg += `<path transform="translate(${i*(size+spacing)}, 0)" d="M${x1},${y1} L${x2},${y2} L${x3},${y3} L${x4},${y4}Z" fill="${color}" />`;
                          break;
                       case "cross":
                          shapeSvg += `
