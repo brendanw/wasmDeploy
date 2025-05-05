@@ -47,7 +47,12 @@ function handleMessage() {
 }
 
 function handleError(err) {
-   console.log('handleError here')
+   if (error.message?.includes("no such column") === true) {
+      deleteDatabase();
+      window.location.replace("https://www.basebeta.com");
+      return;
+   }
+
    return postMessage({
       id: this.data.id,
       error: err,
