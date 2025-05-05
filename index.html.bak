@@ -84,6 +84,271 @@
           });
        }
 
+       window.addStyledMarker = function(exitId, exitName, lat, lng, markerColor, isPinPrecisionConfirmed, wingsuitRating, approachRating, isDarkMode, isVerified) {
+          try {
+             // Create marker with color
+             const marker = new mapboxgl.Marker({ color: markerColor })
+                .setLngLat([lng, lat]);
+
+             // Use the passed in isDarkMode parameter
+             const blackColor = isDarkMode ? "#d3d3d3" : "#000000"; // LightGray or Black
+             const backgroundColor = isDarkMode ? "#333333" : "#ffffff"; // Dark gray or White
+             const textColor = isDarkMode ? "#ffffff" : "#000000"; // White or Black
+
+             // Helper function to create rating SVGs
+             function createRatingSvg(ratingType, ratingValue) {
+                if (ratingValue === undefined || ratingValue === null) return "";
+
+                let svgContent = "";
+                const size = 8; // Size in pixels
+                const spacing = 4; // Spacing between shapes
+
+                // Map rating value to shape, color, and count
+                let shape = "";
+                let color = "";
+                let count = 1;
+
+                if (ratingType === "wingsuit") {
+                   // Map wingsuit rating integer to visual properties
+                   switch(parseInt(ratingValue)) {
+                      case 0: // Green
+                         shape = "circle";
+                         color = "green";
+                         count = 1;
+                         break;
+                      case 1: // SingleBlue
+                         shape = "square";
+                         color = "blue";
+                         count = 1;
+                         break;
+                      case 2: // DoubleBlue
+                         shape = "square";
+                         color = "blue";
+                         count = 2;
+                         break;
+                      case 3: // TripleBlue
+                         shape = "square";
+                         color = "blue";
+                         count = 3;
+                         break;
+                      case 4: // SingleBlack
+                         shape = "diamond";
+                         color = blackColor;
+                         count = 1;
+                         break;
+                      case 5: // DoubleBlack
+                         shape = "diamond";
+                         color = blackColor;
+                         count = 2;
+                         break;
+                      case 6: // TripleBlack
+                         shape = "diamond";
+                         color = blackColor;
+                         count = 3;
+                         break;
+                      case 7: // Red
+                         shape = "cross";
+                         color = "red";
+                         count = 1;
+                         break;
+                      default:
+                         return "N/A";
+                   }
+                } else if (ratingType === "approach") {
+                   // Map approach rating integer to visual properties
+                   switch(parseInt(ratingValue)) {
+                      case 0: // Green
+                         shape = "circle";
+                         color = "green";
+                         break;
+                      case 1: // Blue
+                         shape = "square";
+                         color = "blue";
+                         break;
+                      case 2: // Black
+                         shape = "diamond";
+                         color = blackColor;
+                         break;
+                      case 3: // Red
+                         shape = "cross";
+                         color = "red";
+                         break;
+                      default:
+                         return "N/A";
+                   }
+                }
+
+                // Generate SVG based on shape type
+                let shapeSvg = "";
+                for (let i = 0; i < count; i++) {
+                   switch(shape) {
+                      case "circle":
+                         shapeSvg += `<circle cx="${size/2 + i*(size+spacing)}" cy="${size/2}" r="${size/2}" fill="${color}" />`;
+                         break;
+                      case "square":
+                         shapeSvg += `<rect x="${i*(size+spacing)}" y="0" width="${size}" height="${size}" fill="${color}" />`;
+                         break;
+                      case "diamond":
+                         shapeSvg += `<rect x="${i*(size+spacing)}" y="0" width="${size}" height="${size}" fill="${color}" transform="translate(${size/2 + i*(size+spacing)}, ${size/2}) rotate(45) translate(-${size/2}, -${size/2})" />`;
+                         break;
+                      case "cross":
+                         shapeSvg += `
+              <line x1="${i*(size+spacing)}" y1="${size/2}" x2="${size + i*(size+spacing)}" y2="${size/2}" stroke="${color}" stroke-width="${size/5}" />
+              <line x1="${size/2 + i*(size+spacing)}" y1="0" x2="${size/2 + i*(size+spacing)}" y2="${size}" stroke="${color}" stroke-width="${size/5}" />
+            `;
+                         break;
+                   }
+                }
+
+                // Calculate width based on count
+                const svgWidth = size * count + spacing * (count - 1);
+
+                // Create full SVG with proper width
+                svgContent = `<svg width="${svgWidth}" height="${size}" viewBox="0 0 ${svgWidth} ${size}" xmlns="http://www.w3.org/2000/svg">${shapeSvg}</svg>`;
+
+                return svgContent;
+             }
+
+             // Create popup HTML content as a string with the background color
+             // Add padding-right:30px to ensure no content appears below the X button
+             let popupHTML = `<div style="display: flex; align-items: center; background: ${backgroundColor}; padding: 4px; padding-right: 30px; cursor: pointer;">`;
+
+             // Handle multi-line text
+             const hasMultiLine = exitName.includes('\n');
+             const height = hasMultiLine ? '70px' : '35px';
+             popupHTML += `<div style="height: ${height}; display: flex; align-items: center;">`;
+
+             // Add verified icon if needed
+             if (isVerified) {
+                popupHTML += '<img src="data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 960 960" fill="#2279FC"><path d="M344,900L268,772L124,740L138,592L40,480L138,368L124,220L268,188L344,60L480,118L616,60L692,188L836,220L822,368L920,480L822,592L836,740L692,772L616,900L480,842L344,900ZM438,622L664,396L608,338L438,508L352,424L296,480L438,622Z"/></svg>') + '" style="margin-right: 4px;">';
+             }
+
+             // Add precision icon if not confirmed
+             if (!isPinPrecisionConfirmed) {
+                popupHTML += '<img src="data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" fill="#FFA500"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>') + '" style="margin-right: 4px;">';
+             }
+
+             // Add text with appropriate color
+             popupHTML += `<span style="max-width: 90px; overflow: hidden; text-overflow: ellipsis; font-size: 14px; color: ${textColor};">${exitName}</span>`;
+
+             // Add spacing
+             popupHTML += '<div style="width: 4px;"></div>';
+
+             // Add wingsuit rating if available
+             if (wingsuitRating !== undefined && wingsuitRating !== null) {
+                popupHTML += '<div style="display: flex; align-items: center; margin-right: 4px;">';
+
+                // Use appropriate icon fill color based on dark mode
+                const batIconFill = isDarkMode ? "#e8eaed" : "black";
+                popupHTML += '<img src="data:image/svg+xml;base64,' + btoa(`<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0.75,8C0.75,8 5,7 8,9C8,9 8.5,12.75 10.5,12.75V11C10.5,11 11,12 12,12C13,12 13.5,11 13.5,11V12.75C15.5,12.75 16,9 16,9C19,7 23.25,8 23.25,8C21.25,9 21,12.5 21,12.5C17,12.5 17,15.75 17,15.75C12,14.75 12,18.5 12,18.5C12,18.5 12,14.75 7,15.75C7,15.75 7,12.5 3,12.5C3,12.5 2.75,9 0.75,8Z" fill="${batIconFill}"/></svg>`) + '" style="margin-right: 2px;">';
+
+                // Add wingsuit rating with SVG
+                const wingsuitSvg = createRatingSvg("wingsuit", wingsuitRating);
+                popupHTML += wingsuitSvg;
+                popupHTML += '</div>';
+             }
+
+             // Add spacing between ratings
+             if (wingsuitRating !== undefined && wingsuitRating !== null &&
+                approachRating !== undefined && approachRating !== null) {
+                popupHTML += '<div style="width: 4px;"></div>';
+             }
+
+             // Add approach rating if available
+             if (approachRating !== undefined && approachRating !== null) {
+                popupHTML += '<div style="display: flex; align-items: center;">';
+
+                // Use appropriate icon fill color based on dark mode
+                const hikingIconFill = isDarkMode ? "#e8eaed" : "#000000";
+                popupHTML += '<img src="data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${hikingIconFill}"><path d="m280-40 123-622q6-29 27-43.5t44-14.5q23 0 42.5 10t31.5 30l40 64q18 29 46.5 52.5T700-529v-71h60v560h-60v-406q-48-11-89-35t-71-59l-24 120 84 80v300h-80v-240l-84-80-72 320h-84Zm17-395-85-16q-16-3-25-16.5t-6-30.5l30-157q6-32 34-50.5t60-12.5l46 9-54 274Zm243-305q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>`) + '" style="margin-right: 2px;">';
+
+                // Add approach rating with SVG
+                const approachSvg = createRatingSvg("approach", approachRating);
+                popupHTML += approachSvg;
+                popupHTML += '</div>';
+             }
+
+             // Close divs
+             popupHTML += '</div></div>';
+
+             // Create popup with the HTML content
+             const popup = new mapboxgl.Popup({
+                offset: 25,
+                className: isDarkMode ? 'dark-mode-popup' : 'light-mode-popup'
+             }).setHTML(popupHTML);
+
+             // Add custom CSS to ensure Mapbox popup wrapper also gets the background color
+             const styleId = 'custom-mapbox-popup-styles';
+
+             // Remove any existing style with the same ID to prevent duplicates
+             const existingStyle = document.getElementById(styleId);
+             if (existingStyle) {
+                existingStyle.remove();
+             }
+
+             // Create and add new style
+             const style = document.createElement('style');
+             style.id = styleId;
+             style.textContent = `
+      .mapboxgl-popup-content {
+        background: ${backgroundColor} !important;
+        color: ${textColor} !important;
+        padding: 0 !important;
+        border-radius: 4px !important;
+      }
+
+      /* Style close button and ensure nothing appears below it */
+      .mapboxgl-popup-close-button {
+        color: ${textColor} !important;
+        font-size: 16px !important;
+        padding: 4px 8px !important;
+        right: 0 !important;
+        top: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 2 !important;
+        line-height: 1 !important;
+      }
+
+      /* Style popup tip to match background */
+      .mapboxgl-popup-tip {
+        border-top-color: ${backgroundColor} !important;
+        border-bottom-color: ${backgroundColor} !important;
+      }
+
+      /* Create a "reserved space" for the close button */
+      .mapboxgl-popup-content > div {
+        padding-right: 30px !important;
+      }
+    `;
+             document.head.appendChild(style);
+
+             // Add click event using a simple onclick in the HTML
+             popup.exitId = exitId;
+
+             // Add marker to global array and map with popup
+             window.myMarkers.push(marker);
+             marker.setPopup(popup).addTo(window.myMap);
+
+             // Set up click event listener after the popup is added to the DOM
+             popup.on('open', () => {
+                const popupElement = popup.getElement();
+                if (popupElement) {
+                   const containerDiv = popupElement.querySelector('.mapboxgl-popup-content > div');
+                   if (containerDiv) {
+                      containerDiv.onclick = function() {
+                         window.openExit(exitId);
+                      };
+                   }
+                }
+             });
+
+             return marker;
+          } catch (e) {
+             console.error('Error adding marker:', e);
+          }
+       }
+
        window.createLayer = function (layerObj) {
           if (!window.myMap.getSource(layerObj.sourceId)) {
              window.myMap.addSource(layerObj.sourceId, {
@@ -280,7 +545,7 @@
 
 <script type="application/javascript">
    const unhandledError = (event, error) => {
-      window.location.replace("https://old.basebeta.com")
+      //window.location.replace("https://old.basebeta.com")
       console.error(error);
 
       document.getElementById("warning").style.display = "initial";

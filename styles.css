@@ -53,3 +53,7 @@ html, body {
     -webkit-animation: flicker 1.5s infinite;
     animation: flicker 1.5s infinite;
 }
+
+.mapboxgl-popup-content > div {
+    padding-right: 30px !important;
+}
