@@ -47,7 +47,7 @@ function handleMessage() {
 }
 
 function handleError(err) {
-   if (error.message?.includes("no such column") === true) {
+   if (err.message?.includes("no such column") === true) {
       deleteDatabase();
       window.location.replace("https://www.basebeta.com");
       return;
