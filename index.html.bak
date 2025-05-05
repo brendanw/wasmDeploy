@@ -545,7 +545,13 @@
 
 <script type="application/javascript">
    const unhandledError = (event, error) => {
-      //window.location.replace("https://old.basebeta.com")
+      if (error.message?.includes("SQLITE_ERROR") === true) {
+         deleteDatabase();
+         window.location.replace("https://www.basebeta.com");
+         return;
+      }
+
+      window.location.replace("https://old.basebeta.com")
       console.error(error);
 
       document.getElementById("warning").style.display = "initial";
