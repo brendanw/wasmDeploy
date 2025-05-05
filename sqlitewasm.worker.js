@@ -47,6 +47,7 @@ function handleMessage() {
 }
 
 function handleError(err) {
+   console.log('handleError here')
    return postMessage({
       id: this.data.id,
       error: err,
