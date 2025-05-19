@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Not Supported - BaseBeta</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 120px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #4285F4;
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #3367D6;
+        }
+
+        .browser-icons {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0;
+        }
+
+        .browser-icon {
+            width: 48px;
+            margin: 0 12px;
+        }
+
+        .secondary-text {
+            font-size: 14px;
+            color: #777;
+            margin-top: 24px;
+        }
+
+        #mobile-message, #desktop-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Logo placeholder - replace with your actual logo -->
+    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" rx="20" fill="#4285F4"/>
+        <text x="50" y="60" font-size="40" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BB</text>
+    </svg>
+
+    <h1>Browser Not Compatible</h1>
+
+    <!-- Mobile-specific message -->
+    <div id="mobile-message">
+        <p>Your current browser is not compatible with BaseBeta.</p>
+        <p>For the best experience, please download our mobile app:</p>
+        <a id="app-store-link" class="cta-button">Download the App</a>
+        <p class="secondary-text">Prefer to use the web version? Please open BaseBeta.com in Chrome or Brave browser.</p>
+        <div class="browser-icons">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/googlechrome.svg" alt="Chrome" class="browser-icon">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/brave.svg" alt="Brave" class="browser-icon">
+        </div>
+    </div>
+
+    <!-- Desktop-specific message -->
+    <div id="desktop-message">
+        <p>Your current browser is not compatible with BaseBeta.</p>
+        <p>For the best experience, please use Chrome or Brave browser:</p>
+        <div class="browser-icons">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/googlechrome.svg" alt="Chrome" class="browser-icon">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/brave.svg" alt="Brave" class="browser-icon">
+        </div>
+        <a href="https://www.google.com/chrome/" class="cta-button">Download Chrome</a>
+        <a href="https://brave.com/download/" class="cta-button">Download Brave</a>
+        <p class="secondary-text">Or download our mobile app:</p>
+        <div>
+            <a href="https://play.google.com/store/apps/details?id=com.basebeta" class="cta-button">Android App</a>
+            <a href="https://apps.apple.com/us/app/basebeta/id1212178753" class="cta-button">iOS App</a>
+        </div>
+    </div>
+</div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+      // Parse URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const device = urlParams.get('device');
+      const platform = urlParams.get('platform');
+
+      // Show appropriate message based on device type
+      if (device === 'mobile' || device === 'tablet') {
+         document.getElementById('mobile-message').style.display = 'block';
+
+         // Set correct app store link based on platform
+         const appStoreLink = document.getElementById('app-store-link');
+         if (platform === 'ios') {
+            appStoreLink.href = 'https://apps.apple.com/us/app/basebeta/id1212178753';
+            appStoreLink.textContent = 'Download on App Store';
+         } else {
+            // Default to Android or show both if platform is unknown
+            appStoreLink.href = 'https://play.google.com/store/apps/details?id=com.basebeta';
+            appStoreLink.textContent = 'Download on Google Play';
+         }
+      } else {
+         // Desktop view
+         document.getElementById('desktop-message').style.display = 'block';
+      }
+   });
+</script>
+</body>
+</html>
