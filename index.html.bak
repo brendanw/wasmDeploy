@@ -567,77 +567,77 @@
 </div>
 
 <script type="application/javascript">
-   document.addEventListener('DOMContentLoaded', function() {
-      function detectBrowser() {
-         const userAgent = navigator.userAgent.toLowerCase();
+   function detectBrowser() {
+      const userAgent = navigator.userAgent.toLowerCase();
 
-         // Check if browser is Chrome, Brave, Edge (Chromium-based) or other
-         if (userAgent.indexOf('chrome') > -1 && userAgent.indexOf('edg') === -1) {
-            // Chrome or Brave (both use Chrome in user agent)
-            return 'chrome';
-         } else if (userAgent.indexOf('edg') > -1) {
-            // Edge (Chromium)
-            return 'edge';
-         } else if (userAgent.indexOf('firefox') > -1) {
-            return 'firefox';
-         } else if (userAgent.indexOf('safari') > -1) {
-            return 'safari';
-         } else {
-            return 'other';
+      // Check if browser is Chrome, Brave, Edge (Chromium-based) or other
+      if (userAgent.indexOf('chrome') > -1 && userAgent.indexOf('edg') === -1) {
+         // Chrome or Brave (both use Chrome in user agent)
+         return 'chrome';
+      } else if (userAgent.indexOf('edg') > -1) {
+         // Edge (Chromium)
+         return 'edge';
+      } else if (userAgent.indexOf('firefox') > -1) {
+         return 'firefox';
+      } else if (userAgent.indexOf('safari') > -1) {
+         return 'safari';
+      } else {
+         return 'other';
+      }
+   }
+
+   function detectDevice() {
+      const userAgent = navigator.userAgent.toLowerCase();
+
+      if (
+         /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
+      ) {
+         if (/ipad|tablet|playbook|silk|android(?!.*mobile)/i.test(userAgent)) {
+            return 'tablet';
          }
+         return 'mobile';
       }
 
-      function detectDevice() {
-         const userAgent = navigator.userAgent.toLowerCase();
+      return 'desktop';
+   }
 
-         if (
-            /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
-         ) {
-            if (/ipad|tablet|playbook|silk|android(?!.*mobile)/i.test(userAgent)) {
-               return 'tablet';
-            }
-            return 'mobile';
-         }
+   function isIOS() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/i.test(userAgent);
+   }
 
-         return 'desktop';
-      }
+   function isAndroid() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      return /android/i.test(userAgent);
+   }
 
-      function isIOS() {
-         const userAgent = navigator.userAgent.toLowerCase();
-         return /iphone|ipad|ipod/i.test(userAgent);
-      }
+   function checkCompatibility() {
+      const browser = detectBrowser();
+      const device = detectDevice();
 
-      function isAndroid() {
-         const userAgent = navigator.userAgent.toLowerCase();
-         return /android/i.test(userAgent);
-      }
+      const isChromiumBased = browser === 'chrome' || browser === 'edge';
 
-      function checkCompatibility() {
-         const browser = detectBrowser();
-         const device = detectDevice();
+      if (!isChromiumBased) {
+         let redirectURL = '/unsupported-browser.html?';
 
-         const isChromiumBased = browser === 'chrome' || browser === 'edge';
-
-         if (!isChromiumBased) {
-            let redirectURL = '/unsupported-browser.html?';
-
-            if (device === 'mobile' || device === 'tablet') {
-               redirectURL += `device=${device}`;
-               if (isIOS()) {
-                  redirectURL += '&platform=ios';
-               } else if (isAndroid()) {
-                  redirectURL += '&platform=android';
-               } else {
-                  redirectURL += '&platform=other';
-               }
+         if (device === 'mobile' || device === 'tablet') {
+            redirectURL += `device=${device}`;
+            if (isIOS()) {
+               redirectURL += '&platform=ios';
+            } else if (isAndroid()) {
+               redirectURL += '&platform=android';
             } else {
-               redirectURL += 'device=desktop';
+               redirectURL += '&platform=other';
             }
-
-            window.location.href = redirectURL;
+         } else {
+            redirectURL += 'device=desktop';
          }
-      }
 
+         window.location.href = redirectURL;
+      }
+   }
+
+   document.addEventListener('DOMContentLoaded', function() {
       checkCompatibility();
    });
 
