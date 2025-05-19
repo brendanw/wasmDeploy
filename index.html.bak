@@ -616,7 +616,7 @@
       const device = detectDevice();
 
       const isChromiumBased = browser === 'chrome' || browser === 'edge';
-      const isDesktop = (device === 'mobile' || device === 'tablet')
+      const isDesktop = device === 'desktop'
 
       if (!isChromiumBased && isDesktop) {
          let redirectURL = '/unsupported-browser.html?';
@@ -643,9 +643,7 @@
    });
 
    const unhandledError = (event, error) => {
-      //window.location.replace("https://old.basebeta.com")
       console.error(error);
-
       checkCompatibility();
    }
 

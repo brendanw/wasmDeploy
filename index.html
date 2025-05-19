@@ -503,7 +503,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.1653691a554a74a422a8d0e61677f96c.js"></script>
+    <script type="application/javascript" src="composeApp.5710bdd00371a836cce9c82bbdb0d0d2.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.js"></script>
     <style>
@@ -616,7 +616,7 @@
       const device = detectDevice();
 
       const isChromiumBased = browser === 'chrome' || browser === 'edge';
-      const isDesktop = (device === 'mobile' || device === 'tablet')
+      const isDesktop = device === 'desktop'
 
       if (!isChromiumBased && isDesktop) {
          let redirectURL = '/unsupported-browser.html?';
@@ -643,9 +643,7 @@
    });
 
    const unhandledError = (event, error) => {
-      //window.location.replace("https://old.basebeta.com")
       console.error(error);
-
       checkCompatibility();
    }
 
