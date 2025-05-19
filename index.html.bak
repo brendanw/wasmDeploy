@@ -567,26 +567,6 @@
 </div>
 
 <script type="application/javascript">
-   const unhandledError = (event, error) => {
-      window.location.replace("https://old.basebeta.com")
-      console.error(error);
-
-      document.getElementById("warning").style.display = "initial";
-      document.getElementById("canvasHolder").style.display = "none";
-      document.getElementById("components").style.display = "none";
-      document.getElementsByClassName("homepage_landing")[0].style.display = "none";
-
-      // Hide a Scary Webpack Overlay which is less informative in this case.
-      const webpackOverlay = document.getElementById("webpack-dev-server-client-overlay");
-      if (webpackOverlay != null) webpackOverlay.style.display = "none";
-   }
-
-   addEventListener("error", (event) => unhandledError(event, event.error));
-   addEventListener("unhandledrejection", (event) => unhandledError(event, event.reason));
-</script>
-
-<!-- Browser compatibility check -->
-<script>
    document.addEventListener('DOMContentLoaded', function() {
       function detectBrowser() {
          const userAgent = navigator.userAgent.toLowerCase();
@@ -660,6 +640,17 @@
 
       checkCompatibility();
    });
+
+   const unhandledError = (event, error) => {
+      //window.location.replace("https://old.basebeta.com")
+      console.error(error);
+
+      checkCompatibility();
+   }
+
+   addEventListener("error", (event) => unhandledError(event, event.error));
+   addEventListener("unhandledrejection", (event) => unhandledError(event, event.reason));
 </script>
+
 </body>
 </html>

@@ -503,7 +503,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.d2cb005392d08501d000bf2f72157c9c.js"></script>
+    <script type="application/javascript" src="composeApp.0692201c46361ef7723a2dd5f432c39c.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.js"></script>
     <style>
@@ -567,26 +567,6 @@
 </div>
 
 <script type="application/javascript">
-   const unhandledError = (event, error) => {
-      window.location.replace("https://old.basebeta.com")
-      console.error(error);
-
-      document.getElementById("warning").style.display = "initial";
-      document.getElementById("canvasHolder").style.display = "none";
-      document.getElementById("components").style.display = "none";
-      document.getElementsByClassName("homepage_landing")[0].style.display = "none";
-
-      // Hide a Scary Webpack Overlay which is less informative in this case.
-      const webpackOverlay = document.getElementById("webpack-dev-server-client-overlay");
-      if (webpackOverlay != null) webpackOverlay.style.display = "none";
-   }
-
-   addEventListener("error", (event) => unhandledError(event, event.error));
-   addEventListener("unhandledrejection", (event) => unhandledError(event, event.reason));
-</script>
-
-<!-- Browser compatibility check -->
-<script>
    document.addEventListener('DOMContentLoaded', function() {
       function detectBrowser() {
          const userAgent = navigator.userAgent.toLowerCase();
@@ -660,6 +640,17 @@
 
       checkCompatibility();
    });
+
+   const unhandledError = (event, error) => {
+      //window.location.replace("https://old.basebeta.com")
+      console.error(error);
+
+      checkCompatibility();
+   }
+
+   addEventListener("error", (event) => unhandledError(event, event.error));
+   addEventListener("unhandledrejection", (event) => unhandledError(event, event.reason));
 </script>
+
 </body>
 </html>
