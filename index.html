@@ -467,7 +467,7 @@
                 window.fileUploadProgress = percent;
              });
 
-             request.open("POST", `https://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
+             request.open("POST", `http://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
              console.log(`Auth header: 'Bearer ${token}'`)
              request.setRequestHeader("Authorization", `Bearer ${token}`);
              request.send(formData);
@@ -503,7 +503,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.4f611166f0c35476d8057d6fe4864d0a.js"></script>
+    <script type="application/javascript" src="composeApp.dc1f012f9c6b626a87bb5ccd6854ead4.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.js"></script>
     <style>

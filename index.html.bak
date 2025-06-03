@@ -467,7 +467,7 @@
                 window.fileUploadProgress = percent;
              });
 
-             request.open("POST", `https://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
+             request.open("POST", `http://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
              console.log(`Auth header: 'Bearer ${token}'`)
              request.setRequestHeader("Authorization", `Bearer ${token}`);
              request.send(formData);
