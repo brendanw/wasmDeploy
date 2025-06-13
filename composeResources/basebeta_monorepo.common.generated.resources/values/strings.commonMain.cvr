@@ -151,6 +151,7 @@ string|global_coordinate_copied|Q29vcmRpbmF0ZSBjb3BpZWQ=
 string|global_date|RGF0ZQ==
 string|global_feet_abbreviation|ZnQ=
 string|global_meters_abbreviation|bQ==
+string|global_na|Ti9B
 string|global_ok|T0s=
 string|global_play_store|UGxheSBTdG9yZQ==
 string|global_save|U2F2ZQ==
@@ -410,6 +411,7 @@ string|viewlog_open_track|T3BlbiB0cmFjaw==
 string|viewlog_title|TG9nYm9vaw==
 string|viewprofile_coordinate_copied|Q29vcmRpbmF0ZXMgY29waWVkIHRvIGNsaXBib2FyZA==
 string|viewprofile_data_section|RGF0YQ==
+string|viewprofile_elevation|RWxldmF0aW9uIChtZXRlcnMgYWJvdmUgc2VhLWxldmVsKQ==
 string|viewprofile_profile_copied|UHJvZmlsZSBjb3BpZWQgdG8gY2xpcGJvYXJk
 string|welcome_create_account|Q3JlYXRlIGFjY291bnQ=
 string|welcome_sign_in|U2lnbiBpbg==
