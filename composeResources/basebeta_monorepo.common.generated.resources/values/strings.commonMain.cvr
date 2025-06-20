@@ -17,6 +17,7 @@ string|admin_hike_time_guide|SG93IGxvbmcgZGlkIGl0IHRha2UgdG8gcmVhY2ggdGhlIGV4aXQ
 string|admin_hike_time_title|SGlrZSB0aW1lIHRpdGxl
 string|admin_hmsl_error_saving|RXJyb3IgdXBkYXRpbmcgaG1zbA==
 string|admin_hmsl_guide|SG93IGhpZ2ggYWJvdmUgc2VhIGxldmVsIGlzIHRoZSBleGl0IHBvaW50Pw==
+string|admin_hmsl_label|TWV0ZXJzIGFib3ZlIHNlYSBsZXZlbA==
 string|admin_hmsl_title|SGVpZ2h0IE1TTCBhZG1pbg==
 string|admin_hours_label|SG91cnM=
 string|admin_jump_guide_title|JTEkcyBhZG1pbg==
@@ -317,6 +318,7 @@ string|toggle_all|dG9nZ2xlIGFsbA==
 string|track_attr_computed_offset|Q29tcHV0ZWQgb2Zmc2V0
 string|track_attr_date|RGF0ZQ==
 string|track_attr_distance_traversed|RGlzdGFuY2UgdHJhdmVyc2Vk
+string|track_attr_elevation_change|RWxldmF0aW9uIENoYW5nZQ==
 string|track_attr_exit_coordinate|RXhpdCBjb29yZGluYXRl
 string|track_attr_flare|RmxhcmUgaGVpZ2h0
 string|track_attr_fortyfive|NDXCsCBjcm9zc292ZXI=
@@ -327,6 +329,7 @@ string|track_attr_is_skydive|SXMgU2t5ZGl2ZT8=
 string|track_attr_opening_deceleration|T3BlbmluZyBkZWNlbGVyYXRpb24=
 string|track_attr_opening_loss|T3BlbmluZyBsb3Nz
 string|track_attr_peak_speed|UGVhayBzcGVlZA==
+string|track_attr_push_direction|UHVzaCBEaXJlY3Rpb24=
 string|track_attr_suit|U3VpdA==
 string|track_delete_dialog_body|QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZSB0aGlzIHRyYWNrPw==
 string|track_delete_dialog_title|RGVsZXRlIHRyYWNrPw==
