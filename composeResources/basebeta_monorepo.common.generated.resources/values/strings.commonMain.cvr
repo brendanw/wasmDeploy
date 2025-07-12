@@ -126,6 +126,7 @@ string|exit_direction|RXhpdCBkaXJlY3Rpb24=
 string|exit_geopoint_copied|R2VvcG9pbnQgY29waWVk
 string|exit_menu_open_gpx|T3BlbiAuR1BY
 string|exit_menu_open_kml|T3BlbiAuS01M
+string|exit_menu_open_windy|T3BlbiBGb3JlY2FzdCBpbiBXaW5keQ==
 string|exit_menu_update_exit|VXBkYXRlIGV4aXQ=
 string|exit_page_status|RXhpdCBwYWdlIHN0YXR1cw==
 string|filter_approach_black|RXhwb3NlZA==
