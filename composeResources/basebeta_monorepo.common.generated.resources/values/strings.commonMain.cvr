@@ -138,6 +138,7 @@ string|exit_menu_open_kml|T3BlbiAuS01M
 string|exit_menu_open_windy|T3BlbiBGb3JlY2FzdCBpbiBXaW5keQ==
 string|exit_menu_update_exit|VXBkYXRlIGV4aXQ=
 string|exit_page_status|RXhpdCBwYWdlIHN0YXR1cw==
+string|exit_status_saved_exit|U2F2ZWQgRXhpdA==
 string|filter_approach_black|RXhwb3NlZA==
 string|filter_approach_blue|U2NyYW1ibGU=
 string|filter_approach_green|VHJhaWw=
