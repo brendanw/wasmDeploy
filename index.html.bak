@@ -618,7 +618,7 @@
       const isChromiumBased = browser === 'chrome' || browser === 'edge';
       const isDesktop = device === 'desktop'
 
-      if (!isChromiumBased && isDesktop) {
+      if ((!isChromiumBased && isDesktop) || device === 'mobile') {
          let redirectURL = '/unsupported-browser.html?';
 
          if (device === 'mobile' || device === 'tablet') {
