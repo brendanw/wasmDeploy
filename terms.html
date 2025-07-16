@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms - BaseBeta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .intro {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .terms-list {
+            counter-reset: item;
+            list-style: none;
+        }
+
+        .terms-list li {
+            counter-increment: item;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 35px;
+            font-size: 15px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .terms-list li::before {
+            content: counter(item) ".";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 500;
+            color: #3498db;
+        }
+
+        .acknowledgment {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 15px;
+            color: #555;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .terms-list li {
+                font-size: 14px;
+                padding-left: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>BaseBeta</h1>
+    </div>
+
+    <p class="intro">By tapping 'I Agree', you agree to the following:</p>
+
+    <ol class="terms-list">
+        <li>You understand that this application is primarily for documenting the history of BASE jumping exits around the world as well as technical information about those exits for fans of the sport.</li>
+
+        <li>None of the information or data on this website is to be considered accurate. Much of the content is user submitted and can best be verified by other users via trip reports. If an exit does not have multiple trip reports from other users confirming the accuracy of the information, the information should be treated with extreme caution. What is considered not risky by one user may be considered excessively risky by another. It is the sole responsibility of the user to assess each exit they are considering visiting. Ideal routes may change as a result of erosion. Exits that were once considered safe, especially overhanging rocks, may become unreasonably hazardous over time.</li>
+
+        <li>BASE jumping regulations are in a constant state of flux and due to the small nature of our staff and community, we cannot keep up with regulations as they change. It's the responsibility of the user to research all local laws and regulations; we encourage users to respect local laws and regulations.</li>
+
+        <li>BASE jumping is a highly dangerous activity that requires significant individual responsibility. Mountaineering is a highly dangerous activity that requires significant individual responsibility. Combining the two activities greatly increases risk exposure.</li>
+
+        <li>Every participant in BASE jumping should own a laser and use that laser for recording their own data for potential flights. Never rely solely on public data. Public data is shared as a rough heuristic. Remember that growing trees and varying snow levels can turn a flight from possible to deadly in a matter of months.</li>
+
+        <li>To abide by BaseBeta's Good Citizen policy which means representing the BASE jumping community well to the best of your ability. Those who take actions that are detrimental to the community will have their accounts revoked.</li>
+
+        <li>You grant a perpetual, unlimited, non-exclusive license to use content you submit to BaseBeta and in so doing attest that you are the rightful content owner. This is similar to the licensing language used by comparable websites, such as SummitPost, on user-generated content.</li>
+
+        <li>In the event of your death, injury, or you being reported missing to an official BASE association (FBA, SBA, IBA, BASE Access, etc), you agree to BaseBeta sharing metadata and in-app analytics events tied to your account with BASE associations and the editor of the BASE Fatality List for investigative purposes.</li>
+    </ol>
+
+    <p class="acknowledgment">By tapping "I Agree" below you are acknowledging that you understand that this website's sole purpose is for historical information and take responsibility for independently assessing any expedition you plan.</p>
+</div>
+</body>
+</html>
