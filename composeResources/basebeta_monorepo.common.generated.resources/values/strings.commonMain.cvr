@@ -135,7 +135,7 @@ string|exit_direction|RXhpdCBkaXJlY3Rpb24=
 string|exit_geopoint_copied|R2VvcG9pbnQgY29waWVk
 string|exit_menu_open_gpx|T3BlbiAuR1BY
 string|exit_menu_open_kml|T3BlbiAuS01M
-string|exit_menu_open_windy|T3BlbiBGb3JlY2FzdCBpbiBXaW5keQ==
+string|exit_menu_open_windy|T3BlbiBGb3JlY2FzdA==
 string|exit_menu_update_exit|VXBkYXRlIGV4aXQ=
 string|exit_page_status|RXhpdCBwYWdlIHN0YXR1cw==
 string|exit_status_saved_exit|U2F2ZWQgRXhpdA==
@@ -413,6 +413,8 @@ string|view_exit_landing|Ny4gTGFuZGluZw==
 string|view_exit_ledge_gearup|NC4gTGVkZ2UgYW5kIGdlYXItdXAgYXJlYQ==
 string|view_exit_observations|OS4gT2JzZXJ2YXRpb25z
 string|view_exit_return|OC4gUmV0dXJu
+string|view_exit_see_original|U2VlIG9yaWdpbmFs
+string|view_exit_see_translation|U2VlIHRyYW5zbGF0aW9u
 string|view_exit_terrain_profile|Ni4gSGVpZ2h0L1RlcnJhaW4gUHJvZmlsZQ==
 string|view_exit_toast_admin_only|Vmlld2luZyBhZG1pbi1vbmx5IHBhZ2U=
 string|view_exit_toast_whitelisted_only|Vmlld2luZyBzZW5zaXRpdmUgZXhpdCBmb3Igd2hpdGVsaXN0ZWQgdXNlcnM=

@@ -401,6 +401,8 @@ string|view_exit_jump_type|VElQTyBERSBTQUxUTw==
 string|view_exit_landing|Ni4gQXRlcnJpemFqZQ==
 string|view_exit_observations|OC4gT2JzZXJ2YWNpb25lcw==
 string|view_exit_return|Ny4gUmVncmVzbw==
+string|view_exit_see_original|VmVyIG9yaWdpbmFs
+string|view_exit_see_translation|VmVyIHRyYWR1Y2Npw7Nu
 string|view_exit_terrain_profile|NS4gUGVyZmlsIGRlIGFsdHVyYS90ZXJyZW5v
 string|view_exit_toast_admin_only|VmllbmRvIHDDoWdpbmEgc29sbyBwYXJhIGFkbWluaXN0cmFkb3Jlcw==
 string|view_exit_trip_reports|UmVwb3J0ZXMgZGUgdmlhamU=
