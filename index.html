@@ -422,9 +422,18 @@
              console.log('detected file change');
              let files = this.files;
              let file = files[0];
+             
+             // Check file type
              if (file.type !== "video/mp4" && file.type !== "video/quicktime") {
                 console.log(file.type);
                 return alert("Only mp4 and mov video files are accepted");
+             }
+             
+             // Check file size (4GB = 4 * 1024 * 1024 * 1024 bytes)
+             const MAX_FILE_SIZE = 4 * 1024 * 1024 * 1024; // 4GB in bytes
+             if (file.size > MAX_FILE_SIZE) {
+                const fileSizeGB = (file.size / (1024 * 1024 * 1024)).toFixed(1);
+                return alert(`File is too large (${fileSizeGB}GB). Maximum file size is 4GB. Please compress your video or choose a smaller file.`);
              }
 
              await upload_video(file, token, locationId, mediaId);
@@ -453,7 +462,18 @@
                    if (request.status === 200) {
                       await createJobs(key, token, locationId, mediaId);
                    } else {
-                      alert("error uploading video");
+                      let errorMessage = "Error uploading video";
+                      if (request.status === 413) {
+                         errorMessage = "File is too large. Maximum file size is 2GB.";
+                      } else if (request.status === 0) {
+                         errorMessage = "Network error. Please check your connection and try again.";
+                      } else if (request.status >= 500) {
+                         errorMessage = "Server error. Please try again later.";
+                      } else if (request.status === 401) {
+                         errorMessage = "Authentication error. Please refresh the page and try again.";
+                      }
+                      alert(errorMessage);
+                      console.error("Upload failed with status:", request.status);
                    }
                 }
              };
@@ -475,7 +495,14 @@
           } catch (err) {
              console.error(err);
              window.hasUploadsInProgress = false;
-             alert("Could not get signed URL.");
+             
+             let errorMessage = "Could not upload video";
+             if (err.name === 'NetworkError' || err.message.includes('CORS')) {
+                errorMessage = "Network error. Please check your connection and try again.";
+             } else if (err.message.includes('timeout')) {
+                errorMessage = "Upload timed out. Please try again with a smaller file or better connection.";
+             }
+             alert(errorMessage);
           }
        };
 
@@ -503,7 +530,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.e819c3e2e6ef0693b3110457539c2208.js"></script>
+    <script type="application/javascript" src="composeApp.7c4f4f85be330becda60763f4abd9421.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.js"></script>
     <style>
