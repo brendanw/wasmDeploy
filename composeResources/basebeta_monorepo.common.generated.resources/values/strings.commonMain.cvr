@@ -205,6 +205,8 @@ string|map_layer_my_profiles|TXkgcHJvZmlsZXM=
 string|map_layer_satellite|U2F0ZWxsaXRl
 string|map_layer_subtitle_places|UGxhY2Vz
 string|map_layer_subtitle_styles|TWFwIHN0eWxlcw==
+string|map_tab_filters|RmlsdGVycw==
+string|map_tab_layers|TGF5ZXJz
 string|my_account_delete_account|RGVsZXRlIGFjY291bnQ=
 string|my_account_logout|TG9nb3V0
 string|my_account_terms|VGVybXMgKyBQcml2YWN5IFBvbGljeQ==
