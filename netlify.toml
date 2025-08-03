@@ -6,8 +6,8 @@ status = 200
 force = true
 
 [[redirects]]
-from = "/aws/*"
-to = "https://sdk.amazonaws.com/:splat"
+from = "/magicawspath/*"
+to = "https://sdk.amazonaws.com/js/:splat"
 status = 200
 force = true
 
