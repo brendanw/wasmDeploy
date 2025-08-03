@@ -5,6 +5,12 @@ to = "https://api.mapbox.com/:splat"
 status = 200
 force = true
 
+[[redirects]]
+from = "/aws/*"
+to = "https://sdk.amazonaws.com/:splat"
+status = 200
+force = true
+
 [[headers]]
 for = "/"
 [headers.values]
