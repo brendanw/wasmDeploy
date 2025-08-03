@@ -98,7 +98,7 @@
 
           if (ratingType === "wingsuit") {
              // Map wingsuit rating integer to visual properties
-             switch(parseInt(ratingValue)) {
+             switch (parseInt(ratingValue)) {
                 case 0: // Green
                    shape = "circle";
                    color = "green";
@@ -144,7 +144,7 @@
              }
           } else if (ratingType === "approach") {
              // Map approach rating integer to visual properties
-             switch(parseInt(ratingValue)) {
+             switch (parseInt(ratingValue)) {
                 case 0: // Green
                    shape = "circle";
                    color = "green";
@@ -169,15 +169,15 @@
           // Generate SVG based on shape type
           let shapeSvg = "";
           for (let i = 0; i < count; i++) {
-             switch(shape) {
+             switch (shape) {
                 case "circle":
-                   shapeSvg += `<circle cx="${size/2 + i*(size+spacing)}" cy="${size/2}" r="${size/2}" fill="${color}" />`;
+                   shapeSvg += `<circle cx="${size / 2 + i * (size + spacing)}" cy="${size / 2}" r="${size / 2}" fill="${color}" />`;
                    break;
                 case "square":
-                   shapeSvg += `<rect x="${i*(size+spacing)}" y="0" width="${size}" height="${size}" fill="${color}" />`;
+                   shapeSvg += `<rect x="${i * (size + spacing)}" y="0" width="${size}" height="${size}" fill="${color}" />`;
                    break;
                 case "diamond":
-                   const xPos = i*(size+spacing); // Use original spacing
+                   const xPos = i * (size + spacing); // Use original spacing
 
                    // The original path: "M480-80 240-480 480-880 720-480Z"
                    // We need to scale and translate it to fit our small icon size
@@ -190,22 +190,22 @@
                    // Original center point is at x=480, y=-480
                    // We need to center at x=size/2, y=size/2
 
-                   const x1 = size/2;                     // center point (was 480)
+                   const x1 = size / 2;                     // center point (was 480)
                    const y1 = size;                       // bottom point (was -80)
                    const x2 = 0;                          // left point (was 240)
-                   const y2 = size/2;                     // center y (was -480)
-                   const x3 = size/2;                     // center point (was 480)
+                   const y2 = size / 2;                     // center y (was -480)
+                   const x3 = size / 2;                     // center point (was 480)
                    const y3 = 0;                          // top point (was -880)
                    const x4 = size;                       // right point (was 720)
-                   const y4 = size/2;                     // center y (was -480)
+                   const y4 = size / 2;                     // center y (was -480)
 
                    // Create a path with the exact proportion from the SVG
-                   shapeSvg += `<path transform="translate(${i*(size+spacing)}, 0)" d="M${x1},${y1} L${x2},${y2} L${x3},${y3} L${x4},${y4}Z" fill="${color}" />`;
+                   shapeSvg += `<path transform="translate(${i * (size + spacing)}, 0)" d="M${x1},${y1} L${x2},${y2} L${x3},${y3} L${x4},${y4}Z" fill="${color}" />`;
                    break;
                 case "cross":
                    shapeSvg += `
-              <line x1="${i*(size+spacing)}" y1="${size/2}" x2="${size + i*(size+spacing)}" y2="${size/2}" stroke="${color}" stroke-width="${size/5}" />
-              <line x1="${size/2 + i*(size+spacing)}" y1="0" x2="${size/2 + i*(size+spacing)}" y2="${size}" stroke="${color}" stroke-width="${size/5}" />
+              <line x1="${i * (size + spacing)}" y1="${size / 2}" x2="${size + i * (size + spacing)}" y2="${size / 2}" stroke="${color}" stroke-width="${size / 5}" />
+              <line x1="${size / 2 + i * (size + spacing)}" y1="0" x2="${size / 2 + i * (size + spacing)}" y2="${size}" stroke="${color}" stroke-width="${size / 5}" />
             `;
                    break;
              }
@@ -346,10 +346,10 @@
           return popup;
        }
 
-       window.addStyledMarker = function(exitId, exitName, lat, lng, markerColor, isPinPrecisionConfirmed, wingsuitRating, approachRating, isDarkMode, isVerified) {
+       window.addStyledMarker = function (exitId, exitName, lat, lng, markerColor, isPinPrecisionConfirmed, wingsuitRating, approachRating, isDarkMode, isVerified) {
           try {
              // Create marker with color
-             const marker = new mapboxgl.Marker({ color: markerColor })
+             const marker = new mapboxgl.Marker({color: markerColor})
                 .setLngLat([lng, lat]);
 
              const popup = createPopup(exitId, exitName, isPinPrecisionConfirmed, approachRating, wingsuitRating, isDarkMode, isVerified);
@@ -365,7 +365,7 @@
                 if (popupElement) {
                    const containerDiv = popupElement.querySelector('.mapboxgl-popup-content > div');
                    if (containerDiv) {
-                      containerDiv.onclick = function() {
+                      containerDiv.onclick = function () {
                          window.openExit(exitId);
                       };
                    }
@@ -428,13 +428,13 @@
              console.log('detected file change');
              let files = this.files;
              let file = files[0];
-             
+
              // Check file type
              if (file.type !== "video/mp4" && file.type !== "video/quicktime") {
                 console.log(file.type);
                 return alert("Only mp4 and mov video files are accepted");
              }
-             
+
              // Check file size (4GB = 4 * 1024 * 1024 * 1024 bytes)
              const MAX_FILE_SIZE = 4 * 1024 * 1024 * 1024; // 4GB in bytes
              if (file.size > MAX_FILE_SIZE) {
@@ -446,67 +446,136 @@
           };
        };
 
-       window.upload_video = function (file, token, locationId, mediaId) {
+       window.upload_video = async function (file, token, locationId, mediaId) {
           window.hasUploadsInProgress = true;
+          window.fileUploadProgress = 0;
 
-          let key = `videos/${file.name}`;
+          const key = `videos/${file.name}`;
           window.mediaKey = key;
-          let formData = new FormData();
-          formData.append("file", file);
-          console.log("upload_video was called");
-
-          //let videoId = exports.generateMongoObjectId();
-          //exports.addInProgressVideo(videoId);
           window.activeMediaId = mediaId;
-          console.log(`activeMediaId js: ${window.activeMediaId}`)
+
+          console.log(`Starting upload for: ${file.name}`);
+          console.log(`File size: ${file.size} bytes`);
+          console.log(`Media ID: ${mediaId}`);
 
           try {
-             let request = new XMLHttpRequest();
-             request.onreadystatechange = async (e) => {
-                if (request.readyState === 4) {
-                   window.hasUploadsInProgress = false;
-                   if (request.status === 200) {
-                      await createJobs(key, token, locationId, mediaId);
-                   } else {
-                      let errorMessage = "Error uploading video";
-                      if (request.status === 413) {
-                         errorMessage = "File is too large. Maximum file size is 2GB.";
-                      } else if (request.status === 0) {
-                         errorMessage = "Network error. Please check your connection and try again.";
-                      } else if (request.status >= 500) {
-                         errorMessage = "Server error. Please try again later.";
-                      } else if (request.status === 401) {
-                         errorMessage = "Authentication error. Please refresh the page and try again.";
+             // Step 1: Get presigned URL from backend
+             console.log("Requesting presigned URL...");
+             let params = new URLSearchParams({
+                'key': key,
+                'file_type': 'video/mpeg', // You might want to use file.type here
+                'content_length': file.size.toString()
+             })
+             const presignedResponse = await fetch(`https://api.basebeta.com/generate_upload_url?${params}`, {
+                method: 'POST',
+                headers: {
+                   'Authorization': `Bearer ${token}`
+                }
+             });
+
+             if (!presignedResponse.ok) {
+                throw new Error(`Failed to get presigned URL: ${presignedResponse.status}`);
+             }
+
+             const {url: presignedUrl} = await presignedResponse.json();
+             console.log("Got presigned URL");
+
+             // Step 2: Upload directly to S3 using presigned URL
+             const xhr = new XMLHttpRequest();
+
+             // Set up progress tracking
+             xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                   const percentComplete = (e.loaded / e.total) * 100;
+                   window.fileUploadProgress = percentComplete;
+
+                   const mbUploaded = (e.loaded / 1000000).toFixed(2);
+                   const mbTotal = (e.total / 1000000).toFixed(2);
+                   console.log(`Upload progress: ${percentComplete.toFixed(1)}% (${mbUploaded}MB / ${mbTotal}MB)`);
+                }
+             });
+
+             // Set up completion handler
+             xhr.onreadystatechange = async function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                   if (xhr.status >= 200 && xhr.status < 300) {
+                      console.log("Upload to S3 successful");
+
+                      // Step 3: Confirm upload with backend
+                      try {
+                         await fetch('https://api.basebeta.com/confirm_upload', {
+                            method: 'POST',
+                            headers: {
+                               'Authorization': `Bearer ${token}`
+                            },
+                            body: new URLSearchParams({
+                               'key': key,
+                               'uploaded_size': file.size.toString(),
+                               'content_type': 'video/mpeg'
+                            })
+                         });
+                      } catch (err) {
+                         console.warn("Failed to confirm upload, but file was uploaded:", err);
                       }
+
+                      // Step 4: Create transcoding jobs
+                      await createJobs(key, token, locationId, mediaId);
+
+                   } else {
+                      // Upload failed
+                      let errorMessage = "Error uploading video";
+
+                      if (xhr.status === 403) {
+                         errorMessage = "Upload permission denied. The upload link may have expired.";
+                      } else if (xhr.status === 0) {
+                         errorMessage = "Network error. Please check your connection and try again.";
+                      } else {
+                         try {
+                            const errorText = xhr.responseText;
+                            console.error("S3 upload error:", errorText);
+                            if (errorText.includes('SignatureDoesNotMatch')) {
+                               errorMessage = "Upload authentication failed. Please try again.";
+                            }
+                         } catch (e) {
+                            // Couldn't parse error
+                         }
+                      }
+
                       alert(errorMessage);
-                      console.error("Upload failed with status:", request.status);
+                      console.error("Upload failed with status:", xhr.status);
                    }
+
+                   window.hasUploadsInProgress = false;
                 }
              };
 
-             request.upload.addEventListener('progress', (e) => {
-                let percentLeft = parseInt(100 - (e.loaded / e.total * 100));
-                let percent = (e.loaded / e.total * 100);
-                let mbUploaded = e.loaded / 1000000;
-                console.log(`${mbUploaded} mb uploaded`);
-                console.log(`${percentLeft}% left`);
-                window.fileUploadProgress = percent;
-             });
+             // Set up error handler
+             xhr.onerror = function () {
+                window.hasUploadsInProgress = false;
+                alert("Network error during upload. Please check your connection and try again.");
+                console.error("XHR error during upload");
+             };
 
-             request.open("POST", `https://api.basebeta.com/clean_s3?key=${key}&file_type=${file.type}&content_length=${file.size}`);
-             console.log(`Auth header: 'Bearer ${token}'`)
-             request.setRequestHeader("Authorization", `Bearer ${token}`);
-             request.send(formData);
-             console.log("formData sent")
+             // Open connection and send
+             xhr.open('PUT', presignedUrl);
+
+             // Set required headers
+             xhr.setRequestHeader('x-amz-acl', 'public-read');
+
+             xhr.send(file);
+             console.log("Upload started to S3");
+
           } catch (err) {
-             console.error(err);
+             console.error("Upload error:", err);
              window.hasUploadsInProgress = false;
-             
+
              let errorMessage = "Could not upload video";
-             if (err.name === 'NetworkError' || err.message.includes('CORS')) {
+             if (err.name === 'NetworkError' || err.message.includes('Failed to fetch')) {
                 errorMessage = "Network error. Please check your connection and try again.";
              } else if (err.message.includes('timeout')) {
                 errorMessage = "Upload timed out. Please try again with a smaller file or better connection.";
+             } else if (err.message.includes('presigned URL')) {
+                errorMessage = "Failed to prepare upload. Please try again.";
              }
              alert(errorMessage);
           }
@@ -536,7 +605,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video-js.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.21.1/video.min.js"></script>
 
-    <script type="application/javascript" src="composeApp.06e458a3ada143c9038af2c1ab4eac82.js"></script>
+    <script type="application/javascript" src="composeApp.39dec1243cbb2cb0bc00321eb563199c.js"></script>
     <link href="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet">
     <script src="/mapbox/mapbox-gl-js/v3.11.1/mapbox-gl.js"></script>
     <style>
@@ -671,7 +740,7 @@
       }
    }
 
-   document.addEventListener('DOMContentLoaded', function() {
+   document.addEventListener('DOMContentLoaded', function () {
       checkCompatibility();
    });
 
