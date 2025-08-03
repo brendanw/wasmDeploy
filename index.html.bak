@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="styles.css">
 
     <!--<script src="//d2wy8f7a9ursnm.cloudfront.net/v8/bugsnag.min.js"></script>-->
-    <script src="/aws/js/aws-sdk-2.1498.0.min.js"></script>
+    <script src="/magicawspath/aws-sdk-2.1498.0.min.js"></script>
 
     <script>
        const bc = new BroadcastChannel("my_app_channel");
