@@ -232,7 +232,7 @@
           let popupHTML = `<div style="display: flex; align-items: center; background: ${backgroundColor}; padding: 4px; padding-right: 30px; cursor: pointer;">`;
 
           // Handle multi-line text
-          const hasMultiLine = exitName.includes('\n');
+          const hasMultiLine = exitName.includes('\n') || exitName.length > 20;
           const height = hasMultiLine ? '70px' : '35px';
           popupHTML += `<div style="height: ${height}; display: flex; align-items: center;">`;
 
