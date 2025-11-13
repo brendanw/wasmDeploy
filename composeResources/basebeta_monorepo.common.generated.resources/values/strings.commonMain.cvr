@@ -356,12 +356,16 @@ string|track_attr_opening_loss|T3BlbmluZyBsb3Nz
 string|track_attr_peak_speed|UGVhayBzcGVlZA==
 string|track_attr_push_direction|UHVzaCBEaXJlY3Rpb24=
 string|track_attr_suit|U3VpdA==
+string|track_create_draft_dialog_title|TmFtZSBleGl0
+string|track_create_draft_exitname_length_error|RXhpdCBuYW1lIGNhbm5vdCBiZSBlbXB0eQ==
+string|track_create_draft_textfield_label|RXhpdCBuYW1l
 string|track_delete_dialog_body|QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZSB0aGlzIHRyYWNrPw==
 string|track_delete_dialog_title|RGVsZXRlIHRyYWNrPw==
 string|track_filter_display_value|RGlzcGxheSB2YWx1ZQ==
 string|track_filter_gps_lock|T25seSBpbmNsdWRlIHRyYWNrcyB3LyBHUFMgbG9jaw==
 string|track_filter_reverse|UmV2ZXJzZQ==
 string|track_filter_sort|U29ydA==
+string|track_menu_create_draft|Q3JlYXRlIGRyYWZ0
 string|track_menu_delete|RGVsZXRlIHRyYWNr
 string|track_menu_open_analysis|T3BlbiBpbiBzdGFydCBhbmFseXNpcw==
 string|track_parse_error|RXJyb3IgZG93bmxvYWRpbmcrcGFyc2luZyB0cmFjaw==
