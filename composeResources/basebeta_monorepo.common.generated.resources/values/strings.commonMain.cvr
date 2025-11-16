@@ -338,8 +338,10 @@ string|terms_dialog_agree|SSBhZ3JlZQ==
 string|terms_dialog_title|VGVybXMgKyBQcml2YWN5IFBvbGljeQ==
 string|terrainmap_coordinate_copied|Q29vcmRpbmF0ZSBjb3BpZWQ=
 string|toggle_all|dG9nZ2xlIGFsbA==
+string|track_attr_canopy_time|Q2Fub3B5IHRpbWU=
 string|track_attr_computed_offset|Q29tcHV0ZWQgb2Zmc2V0
 string|track_attr_date|RGF0ZQ==
+string|track_attr_deployment_height|RGVwbG95bWVudCBoZWlnaHQ=
 string|track_attr_deployment_location|RGVwbG95bWVudCBsb2NhdGlvbg==
 string|track_attr_distance_traversed|RGlzdGFuY2UgdHJhdmVyc2Vk
 string|track_attr_elevation_change|RWxldmF0aW9uIENoYW5nZQ==
