@@ -169,6 +169,8 @@ string|global_na|Ti9B
 string|global_ok|T0s=
 string|global_play_store|UGxheSBTdG9yZQ==
 string|global_save|U2F2ZQ==
+string|global_size_gigabytes|JTEkcyBHQg==
+string|global_size_megabytes|JTEkcyBNQg==
 string|global_snackbar_internet_not_connected|WW91IGFyZSBub3QgY29ubmVjdGVkIHRvIHRoZSBpbnRlcm5ldA==
 string|global_snackbar_server_error|QmFzZUJldGEncyBTZXJ2ZXJzIGFyZSBjdXJyZW50bHkgZXhwZXJpZW5jaW5nIHNvbWUgZGlmZmljdWx0eS4gUGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4=
 string|global_tab_analysis|QW5hbHlzaXM=
@@ -197,6 +199,8 @@ string|loglist_card_see_all|U2VlIGFsbCArIGNvbmZpZ3VyZSBzdGF0cw==
 string|loglist_card_skydives|U2t5ZGl2ZXM=
 string|loglist_card_ws_base|V1MgQkFTRQ==
 string|loglist_card_ws_sky|V1MgU2t5
+string|loglist_delete_dialog_body|QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZSB0aGlzIGxvZ2Jvb2sgZW50cnk/
+string|loglist_delete_dialog_title|RGVsZXRlIGxvZ2Jvb2sgZW50cnk/
 string|loglist_instructions|U3RhcnQgeW91ciBsb2dib29rIGJ5IHRhcHBpbmcgdGhlICsgaWNvbiBpbiB0aGUgdXBwZXIgcmlnaHQtaGFuZCBjb3JuZXIgdG8gY3JlYXRlIHlvdXIgZmlyc3QgZW50cnk=
 string|map_chip_all_filters|QWxsIGZpbHRlcnM=
 string|map_chip_approach|QXBwcm9hY2g=

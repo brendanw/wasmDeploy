@@ -464,7 +464,7 @@
              console.log("Requesting presigned URL...");
              let params = new URLSearchParams({
                 'key': key,
-                'file_type': 'video/mpeg', // You might want to use file.type here
+                'file_type': file.type,
                 'content_length': file.size.toString()
              })
              const presignedResponse = await fetch(`https://api.basebeta.com/generate_upload_url?${params}`, {
