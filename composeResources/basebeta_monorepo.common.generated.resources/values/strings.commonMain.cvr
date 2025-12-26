@@ -195,8 +195,12 @@ string|logbook_stat_header|IkRpZCB5b3UgdXNlIGFub3RoZXIgbG9nYm9vayBiZWZvcmUgQmFzZ
 string|logbook_stat_title|U3RhdHM=
 string|loglist_card_BASE|QkFTRQ==
 string|loglist_card_countries|Q291bnRyaWVz
+string|loglist_card_distinct_exits|RGlzdGluY3QgRXhpdHM=
 string|loglist_card_see_all|U2VlIGFsbCArIGNvbmZpZ3VyZSBzdGF0cw==
 string|loglist_card_skydives|U2t5ZGl2ZXM=
+string|loglist_card_slider_off|U2xpZGVyIE9mZg==
+string|loglist_card_ts_base|VFMgQkFTRQ==
+string|loglist_card_ts_sky|VFMgU2t5
 string|loglist_card_ws_base|V1MgQkFTRQ==
 string|loglist_card_ws_sky|V1MgU2t5
 string|loglist_delete_dialog_body|QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZSB0aGlzIGxvZ2Jvb2sgZW50cnk/
@@ -314,9 +318,12 @@ string|settings_delete_account|RGVsZXRlIGFjY291bnQ=
 string|settings_imperial|SW1wZXJpYWw=
 string|settings_metric|TWV0cmlj
 string|settings_offline_packs|T2ZmbGluZSBwYWNrcw==
+string|settings_photo_invalid_format|UGxlYXNlIHNlbGVjdCBhIEpQRUcgb3IgUE5HIGltYWdl
+string|settings_photo_read_error|RXJyb3IgcmVhZGluZyBpbWFnZQ==
 string|settings_rankings|UmFua2luZ3M=
 string|settings_rockdrop_table|Um9jayBEcm9wIFRhYmxl
 string|settings_saved_exits|U2F2ZWQgZXhpdHM=
+string|settings_select_photo|U2VsZWN0IHBob3Rv
 string|settings_submit_exit|U3VibWl0IGV4aXQ=
 string|settings_unit_system|VW5pdCBTeXN0ZW0gUHJlZmVyZW5jZQ==
 string|settings_upload_photo_error|RXJyb3Igb2NjdXJyZWQgd2hpbGUgdXBsb2FkaW5nIHBob3Rv
