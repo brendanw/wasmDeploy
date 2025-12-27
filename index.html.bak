@@ -383,7 +383,8 @@
           if (!window.myMap.getSource(layerObj.sourceId)) {
              window.myMap.addSource(layerObj.sourceId, {
                 'type': 'geojson',
-                'data': layerObj.geojson
+                'data': layerObj.geojson,
+                'generateId': true  // Auto-assign IDs 0, 1, 2, ... for feature state
              });
           }
 
@@ -409,11 +410,60 @@
                 type: 'circle',
                 source: layerObj.sourceId,
                 paint: {
-                   'circle-radius': 8,
-                   'circle-color': layerObj.color
+                   // Use feature-state for selected point highlighting
+                   'circle-radius': [
+                      'case',
+                      ['boolean', ['feature-state', 'selected'], false],
+                      14,  // Larger when selected
+                      8    // Normal size
+                   ],
+                   'circle-color': [
+                      'case',
+                      ['boolean', ['feature-state', 'selected'], false],
+                      '#FF0000',  // Red when selected
+                      layerObj.color  // Normal color
+                   ],
+                   'circle-stroke-width': [
+                      'case',
+                      ['boolean', ['feature-state', 'selected'], false],
+                      3,   // Stroke when selected
+                      0    // No stroke normally
+                   ],
+                   'circle-stroke-color': '#FFFFFF'
                 },
                 filter: ['==', '$type', 'Point']
              });
+          }
+       };
+
+       // Track the currently selected feature for clearing
+       window.selectedFeatureId = null;
+       window.selectedSourceId = null;
+
+       window.setSelectedFeature = function (sourceId, featureIndex) {
+          try {
+             // Clear previous selection
+             if (window.selectedFeatureId !== null && window.selectedSourceId !== null) {
+                window.myMap.setFeatureState(
+                   { source: window.selectedSourceId, id: window.selectedFeatureId },
+                   { selected: false }
+                );
+             }
+
+             // Set new selection
+             if (featureIndex >= 0) {
+                window.myMap.setFeatureState(
+                   { source: sourceId, id: featureIndex },
+                   { selected: true }
+                );
+                window.selectedFeatureId = featureIndex;
+                window.selectedSourceId = sourceId;
+             } else {
+                window.selectedFeatureId = null;
+                window.selectedSourceId = null;
+             }
+          } catch (e) {
+             console.error('Error setting selected feature:', e);
           }
        };
 
