@@ -56,6 +56,57 @@
           "fetchRemoteConfig": true, "autocapture": true
        });
 
+       // Brave Shield detection for 3D map rendering
+       window.checkMapboxBlocked = async function() {
+          try {
+             // Check if this is Brave browser
+             const isBrave = navigator.brave && await navigator.brave.isBrave();
+             if (!isBrave) return false;
+
+             // Test fetch to Mapbox events endpoint (blocked by Brave Shield as tracking)
+             // When Brave blocks it, fetch throws a network error (TypeError)
+             // Any HTTP response (even error status) means it wasn't blocked
+             const testUrl = 'https://events.mapbox.com/events/v2?access_token=pk.eyJ1IjoiYmFzZWJldGEiLCJhIjoiY2w4cm90bXlwMG4wMTNwbWhhczJvdWl6aSJ9.8aqzXEM26Lic7oKT-_2JRw';
+             const payload = [{
+                event: 'gljs.performance',
+                created: new Date().toISOString(),
+                counters: [],
+                metadata: [{ name: 'sdkIdentifier', value: 'mapbox-gl-js' }],
+                attributes: []
+             }];
+             await fetch(testUrl, {
+                method: 'POST',
+                mode: 'cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+             });
+             return false; // Request went through, not blocked
+          } catch (e) {
+             // Network error = request was blocked by Brave Shield
+             console.warn('Mapbox API request blocked:', e);
+             return true;
+          }
+       };
+
+       window.showBraveShieldWarning = function() {
+          alert(
+             '⚠️ Brave Shield Detected\n\n' +
+             '3D map rendering requires access to Mapbox services, which are blocked by Brave Shield.\n\n' +
+             'To enable 3D terrain:\n' +
+             '1. Click the Brave Shield icon (lion) in the address bar\n' +
+             '2. Toggle shields OFF for this site\n' +
+             '3. Refresh the page'
+          );
+       };
+
+       window.checkAndWarnBraveShield = async function() {
+          const isBlocked = await window.checkMapboxBlocked();
+          if (isBlocked) {
+             window.showBraveShieldWarning();
+          }
+          return isBlocked;
+       };
+
        let isKeyPressed = false;
 
        // Listen for keydown events to track if a key is being held
@@ -886,6 +937,7 @@
 
    document.addEventListener('DOMContentLoaded', function () {
       checkCompatibility();
+      checkAndWarnBraveShield();
    });
 
    const unhandledError = (event, error) => {
