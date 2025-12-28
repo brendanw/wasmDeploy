@@ -355,7 +355,8 @@ string|pin_precision_confirmed|UGluIHByZWNpc2lvbiBjb25maXJtZWQ=
 string|positive|UG9zaXRpdmU=
 string|rankings_country_explorer|Q291bnRyeSBFeHBsb3Jlcg==
 string|rankings_distance|RGlzdGFuY2U=
-string|rankings_distinct_exits|RGlzdGluY3QgRXhpdHM=
+string|rankings_distinct_exits|RXhpdCBFeHBsb3Jlcg==
+string|rankings_exit_creator|RXhpdCBDcmVhdG9y
 string|rankings_flare|RmxhcmU=
 string|rankings_speed|U3BlZWQ=
 string|rankings_start|U3RhcnQ=
