@@ -535,6 +535,7 @@ string|track_attr_gps_lock|R1BTIGxvY2s=
 string|track_attr_height_msl|RXhpdCBhbHRpdHVkZSAoSE1TTCk=
 string|track_attr_is_skydive|SXMgU2t5ZGl2ZT8=
 string|track_attr_is_slider_off|SXMgU2xpZGVyIE9mZj8=
+string|track_attr_jump_type|SnVtcCB0eXBl
 string|track_attr_opening_deceleration|T3BlbmluZyBkZWNlbGVyYXRpb24=
 string|track_attr_opening_loss|T3BlbmluZyBsb3Nz
 string|track_attr_peak_speed|UGVhayBzcGVlZA==
