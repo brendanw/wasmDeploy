@@ -48,6 +48,8 @@ function handleMessage() {
 
 function handleError(err) {
    // TODO: record bugsnag error here
+   console.error(err);
+
    if (err.message?.includes("no such column") === true) {
       deleteDatabase();
       self.postMessage({ type: 'RELOAD_PAGE'});
