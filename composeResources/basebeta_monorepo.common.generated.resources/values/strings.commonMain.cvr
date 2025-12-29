@@ -313,6 +313,7 @@ string|map_layer_reference_flights|UmVmZXJlbmNlIGZsaWdodHM=
 string|map_layer_satellite|U2F0ZWxsaXRl
 string|map_layer_subtitle_places|UGxhY2Vz
 string|map_layer_subtitle_styles|TWFwIHN0eWxlcw==
+string|map_menu_recently_added|UmVjZW50bHkgYWRkZWQgZXhpdHM=
 string|map_tab_filters|RmlsdGVycw==
 string|map_tab_layers|TGF5ZXJz
 string|my_account_delete_account|RGVsZXRlIGFjY291bnQ=
@@ -361,6 +362,8 @@ string|rankings_flare|RmxhcmU=
 string|rankings_speed|U3BlZWQ=
 string|rankings_start|U3RhcnQ=
 string|rankings_title|UmFua2luZ3M=
+string|recently_added_exits_empty|Tm8gcmVjZW50bHkgYWRkZWQgZXhpdHM=
+string|recently_added_exits_title|UmVjZW50bHkgQWRkZWQ=
 string|resetpassword_confirm_field|Q29uZmlybSBuZXcgcGFzc3dvcmQ=
 string|resetpassword_mismatch_error|VGhlIHR3byBwYXNzd29yZHMgeW91IGlucHV0dGVkIGRvIG5vdCBtYXRjaA==
 string|resetpassword_next|TkVYVA==
